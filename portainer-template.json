@@ -1,0 +1,60 @@
+{
+  "version": "2",
+  "templates": [
+    {
+      "type": 3,
+      "title": "Painel Evo - Multi-Tenant",
+      "description": "Sistema completo de gestão multi-tenant com WhatsApp e Evolution API",
+      "note": "Stack pronta para Traefik com SSL automático. Certifique-se que a rede 'traefik' existe.",
+      "categories": ["CRM", "WhatsApp", "Multi-Tenant", "Evolution API"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/portainer/portainer/develop/app/assets/ico/favicon.ico",
+      "repository": {
+        "url": "https://github.com/seu-usuario/painel-evo",
+        "stackfile": "docker-compose.yml"
+      },
+      "env": [
+        {
+          "name": "DOMAIN",
+          "label": "Domínio da Aplicação",
+          "description": "Domínio onde a aplicação será acessada (ex: painel.seudominio.com)",
+          "default": "painel.exemplo.com"
+        },
+        {
+          "name": "POSTGRES_DB",
+          "label": "Nome do Banco de Dados",
+          "description": "Nome do banco PostgreSQL",
+          "default": "painel_evo"
+        },
+        {
+          "name": "POSTGRES_USER",
+          "label": "Usuário PostgreSQL",
+          "description": "Usuário do banco PostgreSQL",
+          "default": "postgres"
+        },
+        {
+          "name": "POSTGRES_PASSWORD",
+          "label": "Senha PostgreSQL",
+          "description": "Senha do banco PostgreSQL (use uma senha forte de 12+ caracteres)"
+        },
+        {
+          "name": "JWT_SECRET",
+          "label": "JWT Secret",
+          "description": "Chave secreta para JWT (gere uma chave aleatória de 32+ caracteres)"
+        },
+        {
+          "name": "EVOLUTION_API_URL",
+          "label": "URL da Evolution API",
+          "description": "URL completa da sua Evolution API",
+          "default": "https://evolution.seudominio.com"
+        },
+        {
+          "name": "EVOLUTION_API_KEY",
+          "label": "Chave da Evolution API",
+          "description": "Chave de acesso da Evolution API (se necessário)",
+          "default": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+version: '3.8'
+
+services:
+  # Banco de Dados PostgreSQL
+  postgres:
+    image: postgres:15-alpine
+    container_name: painel-evo-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-painel_evo}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - painel-evo-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: painel-evo-backend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-painel_evo}
+      JWT_SECRET: ${JWT_SECRET}
+      EVOLUTION_API_URL: ${EVOLUTION_API_URL}
+      EVOLUTION_API_KEY: ${EVOLUTION_API_KEY}
+      PORT: 3000
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - painel-evo-network
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.painel-evo-api.rule=Host(`${DOMAIN}`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.painel-evo-api.entrypoints=websecure"
+      - "traefik.http.routers.painel-evo-api.tls.certresolver=letsencrypt"
+      - "traefik.http.services.painel-evo-api.loadbalancer.server.port=3000"
+      - "traefik.docker.network=traefik"
+
+  # Frontend Vue.js
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: https://${DOMAIN}/api
+        VITE_SOCKET_URL: https://${DOMAIN}
+    container_name: painel-evo-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.painel-evo-app.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.painel-evo-app.entrypoints=websecure"
+      - "traefik.http.routers.painel-evo-app.tls.certresolver=letsencrypt"
+      - "traefik.http.services.painel-evo-app.loadbalancer.server.port=80"
+      - "traefik.docker.network=traefik"
+
+  # Redis (Opcional - para cache)
+  redis:
+    image: redis:7-alpine
+    container_name: painel-evo-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - painel-evo-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  painel-evo-network:
+    driver: bridge
+  traefik:
+    external: true

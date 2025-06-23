@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  email     String     @unique
+  name      String?
+  password  String
+  isAdmin   Boolean    @default(false)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  instances Instance[]
+}
+
+model EvolutionSettings {
+  id           Int      @id @default(autoincrement())
+  baseUrl      String
+  apiKeyGlobal String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Instance {
+  id                  Int      @id @default(autoincrement())
+  userId              Int
+  instanceName        String
+  evolutionInstanceId String?
+  status              String   @default("disconnected")
+  qrCodeBase64        String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  ownerJid            String?
+  profileName         String?
+  profilePictureUrl   String?
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, instanceName])
+}
