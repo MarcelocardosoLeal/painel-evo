@@ -19,6 +19,11 @@ Este documento detalha a arquitetura, funcionalidades e o progresso do desenvolv
 - **🐳 DOCKER_README.md** - Guia completo Docker
 - **📋 DOCKER_CONTAINERIZATION_GUIDE.md** - Processo detalhado
 
+### 🚀 **Deployment/Instalação:**
+- **📁 deployment/** - Pasta com arquivos para instalação via Portainer
+- **📋 deployment/README.md** - Guia rápido de instalação
+- **📖 deployment/DEPLOY_GUIDE.md** - Documentação completa de deploy
+
 ---
 
 ## 🚨 IMPORTANTE - CORREÇÕES CRÍTICAS IMPLEMENTADAS

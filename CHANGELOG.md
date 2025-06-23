@@ -24,6 +24,84 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Versionamento Semântico](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2025-01-XX - ORGANIZAÇÃO DA DOCUMENTAÇÃO
+
+### 📁 REESTRUTURAÇÃO COMPLETA DA DOCUMENTAÇÃO
+
+#### ✅ Funcionalidades Implementadas
+- **Pasta `deployment/`**: Organização dedicada para instalação via Portainer
+- **Guia de instalação rápida**: QUICK_INSTALL.md (5-10 minutos)
+- **Variáveis de ambiente**: .env.example específico para deployment
+- **Navegação melhorada**: README.md atualizado com nova estrutura
+
+#### 📋 Arquivos Criados/Movidos
+```
+deployment/
+├── README.md                 # Guia da pasta deployment
+├── QUICK_INSTALL.md         # ⚡ Instalação express
+├── DEPLOY_GUIDE.md          # 📖 Guia completo (movido)
+├── docker-compose.yml       # 🐳 Stack Portainer (movido)
+├── portainer-template.json  # 📋 Template (movido)
+├── .env.example            # 🔧 Variáveis específicas
+└── .dockerignore           # 🚀 Otimização (movido)
+```
+
+#### 🎯 Melhorias de Organização
+- **Separação clara**: Código vs Documentação de Deploy
+- **Instalação mais rápida**: Guia express de 5-10 minutos
+- **Melhor navegação**: Links diretos para cada tipo de instalação
+- **Variáveis centralizadas**: .env.example específico para Portainer
+
+#### 📖 Documentação Atualizada
+- **README.md principal**: Nova seção "Deployment/Instalação"
+- **deployment/README.md**: Guia completo da pasta
+- **QUICK_INSTALL.md**: Instalação express com verificações
+
+---
+
+## [1.2.0] - 2025-01-XX - CONTAINERIZAÇÃO E DEPLOY
+
+### 🐳 DOCKER E DEPLOY IMPLEMENTADO
+
+#### Containerização Completa
+- ✅ **ADICIONADO**: Dockerfile otimizado para backend Node.js
+- ✅ **ADICIONADO**: Dockerfile multi-stage para frontend Vue.js
+- ✅ **ADICIONADO**: Configuração nginx para SPA
+- ✅ **ADICIONADO**: docker-compose.yml para Docker Swarm
+- ✅ **ADICIONADO**: .dockerignore para otimização de build
+- ✅ **ADICIONADO**: GitHub Actions para build automático
+
+#### Integração com Infraestrutura Existente
+- ✅ **CONFIGURADO**: Integração com PostgreSQL existente (porta 5433)
+- ✅ **CONFIGURADO**: Traefik labels para SSL automático
+- ✅ **CONFIGURADO**: Rede network_public para comunicação
+- ✅ **CONFIGURADO**: Domínio painel-evo.advancedbot.com.br
+- ✅ **CONFIGURADO**: Separação de rotas API (/api) e Frontend
+
+#### Portainer Template
+- ✅ **CRIADO**: Template JSON para instalação one-click
+- ✅ **CONFIGURADO**: Variáveis de ambiente parametrizadas
+- ✅ **DOCUMENTADO**: Guia completo de deploy (DEPLOY_GUIDE.md)
+
+#### Arquivos Criados/Modificados
+- `backend/Dockerfile` - Container otimizado para produção
+- `frontend/Dockerfile` - Build multi-stage com nginx
+- `frontend/nginx.conf` - Configuração para SPA
+- `docker-compose.yml` - Stack completa para Swarm
+- `.dockerignore` - Otimização de build
+- `.github/workflows/docker-build.yml` - CI/CD automático
+- `portainer-template.json` - Template para Portainer
+- `DEPLOY_GUIDE.md` - Guia completo de deploy
+
+#### Configurações de Produção
+- 🔐 **SEGURANÇA**: Usuário não-root nos containers
+- 🚀 **PERFORMANCE**: Build otimizado com cache
+- 📊 **RECURSOS**: Limites de CPU e memória definidos
+- 🔄 **CI/CD**: Build automático via GitHub Actions
+- 📦 **REGISTRY**: GitHub Container Registry configurado
+
+---
+
 ## [1.1.0] - 2025-01-XX - CORREÇÕES CRÍTICAS EVOLUTION API
 
 ### 🔧 CORREÇÕES CRÍTICAS IMPLEMENTADAS
