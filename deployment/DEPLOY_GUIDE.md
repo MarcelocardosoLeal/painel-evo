@@ -7,7 +7,7 @@
 - ✅ **Portainer** instalado e funcionando
 - ✅ **Traefik** configurado com SSL automático
 - ✅ **PostgreSQL** rodando na rede `network_public`
-- ✅ **Domínio** `painel-evo.advancedbot.com.br` apontando para o servidor
+- ✅ **Domínio** `painelevo.advancedbot.com.br` apontando para o servidor
 
 ### Configurações do PostgreSQL
 Sua stack atual do PostgreSQL:
@@ -133,9 +133,9 @@ As labels já estão configuradas para:
 ## 🌐 Acesso à Aplicação
 
 Após o deploy:
-- **Frontend**: https://painel-evo.advancedbot.com.br
-- **API**: https://painel-evo.advancedbot.com.br/api
-- **Health Check**: https://painel-evo.advancedbot.com.br/api/health
+- **Frontend**: https://painelevo.advancedbot.com.br
+- **API**: https://painelevo.advancedbot.com.br/api
+- **Health Check**: https://painelevo.advancedbot.com.br/api/health
 
 ## 🔍 Verificação do Deploy
 
@@ -152,7 +152,7 @@ docker service logs painel-evo_painel-evo-frontend
 
 ### 3. Testar Conectividade
 ```bash
-curl https://painel-evo.advancedbot.com.br/api/health
+curl https://painelevo.advancedbot.com.br/api/health
 ```
 
 ## 🚨 Troubleshooting
@@ -200,4 +200,4 @@ Para atualizar a aplicação:
 
 **✅ Deploy Concluído!**
 
-Sua aplicação estará disponível em: https://painel-evo.advancedbot.com.br
+Sua aplicação estará disponível em: https://painelevo.advancedbot.com.br

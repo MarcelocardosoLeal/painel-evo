@@ -75,7 +75,7 @@ deployment/
 - ✅ **CONFIGURADO**: Integração com PostgreSQL existente (porta 5433)
 - ✅ **CONFIGURADO**: Traefik labels para SSL automático
 - ✅ **CONFIGURADO**: Rede network_public para comunicação
-- ✅ **CONFIGURADO**: Domínio painel-evo.advancedbot.com.br
+- ✅ **CONFIGURADO**: Domínio painelevo.advancedbot.com.br
 - ✅ **CONFIGURADO**: Separação de rotas API (/api) e Frontend
 
 #### Portainer Template

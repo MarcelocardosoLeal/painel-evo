@@ -41,7 +41,7 @@ deployment/
 - ✅ Portainer instalado
 - ✅ Traefik configurado com SSL
 - ✅ PostgreSQL existente na rede `network_public`
-- ✅ Domínio configurado: `painel-evo.advancedbot.com.br`
+- ✅ Domínio configurado: `painelevo.advancedbot.com.br`
 
 ## 🔧 Variáveis Obrigatórias
 
@@ -60,8 +60,8 @@ Para instruções detalhadas, consulte:
 ## 🌐 URLs de Acesso
 
 Após o deploy:
-- **Frontend**: https://painel-evo.advancedbot.com.br
-- **API**: https://painel-evo.advancedbot.com.br/api
+- **Frontend**: https://painelevo.advancedbot.com.br
+- **API**: https://painelevo.advancedbot.com.br/api
 
 ## 🆘 Suporte
 

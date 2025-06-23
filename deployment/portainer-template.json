@@ -5,7 +5,7 @@
       "type": 3,
       "title": "Painel Evo - Sistema de Gestão",
       "description": "Sistema completo de gestão com integração WhatsApp via Evolution API. Inclui backend Node.js, frontend Vue.js e integração com PostgreSQL existente.",
-      "note": "<p><b>Pré-requisitos:</b></p><ul><li>PostgreSQL rodando na rede network_public</li><li>Traefik configurado com SSL</li><li>Domínio painel-evo.advancedbot.com.br apontando para o servidor</li></ul><p><b>Funcionalidades:</b></p><ul><li>🔐 Sistema de autenticação JWT</li><li>📱 Integração WhatsApp via Evolution API</li><li>👥 Gestão de usuários e organizações</li><li>📊 Dashboard administrativo</li><li>🔄 API RESTful completa</li></ul>",
+      "note": "<p><b>Pré-requisitos:</b></p><ul><li>PostgreSQL rodando na rede network_public</li><li>Traefik configurado com SSL</li><li>Domínio painelevo.advancedbot.com.br apontando para o servidor</li></ul><p><b>Funcionalidades:</b></p><ul><li>🔐 Sistema de autenticação JWT</li><li>📱 Integração WhatsApp via Evolution API</li><li>👥 Gestão de usuários e organizações</li><li>📊 Dashboard administrativo</li><li>🔄 API RESTful completa</li></ul>",
       "categories": ["CRM", "WhatsApp", "Gestão"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/docker-library/docs/master/node/logo.png",

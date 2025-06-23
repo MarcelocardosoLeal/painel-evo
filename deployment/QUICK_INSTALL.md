@@ -24,7 +24,7 @@ EVOLUTION_API_KEY=sua-api-key
 ### 3. Deploy
 - Clique em "Deploy the stack"
 - Aguarde o build das imagens
-- Acesse: https://painel-evo.advancedbot.com.br
+- Acesse: https://painelevo.advancedbot.com.br
 
 ---
 
@@ -78,8 +78,8 @@ EVOLUTION_API_KEY=sua-api-key
 ### 3. Acesso Web
 ```bash
 # Teste os URLs:
-✅ https://painel-evo.advancedbot.com.br (Frontend)
-✅ https://painel-evo.advancedbot.com.br/api/health (API)
+✅ https://painelevo.advancedbot.com.br (Frontend)
+✅ https://painelevo.advancedbot.com.br/api/health (API)
 ```
 
 ---

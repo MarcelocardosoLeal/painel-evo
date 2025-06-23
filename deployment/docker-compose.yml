@@ -9,7 +9,7 @@ services:
       - DATABASE_URL=postgresql://postgres:7oqmxlmreoak@postgres:5432/dbevolution
       - JWT_SECRET=${JWT_SECRET:-your-super-secret-jwt-key-change-this}
       - PORT=3000
-      - FRONTEND_URL=https://painel-evo.advancedbot.com.br
+      - FRONTEND_URL=https://painelevo.advancedbot.com.br
       - EVOLUTION_WEBHOOK_SECRET=${EVOLUTION_WEBHOOK_SECRET:-webhook-secret}
       - EVOLUTION_API_URL=${EVOLUTION_API_URL:-}
       - EVOLUTION_API_KEY=${EVOLUTION_API_KEY:-}
@@ -28,7 +28,7 @@ services:
           memory: 512M
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.painel-evo-api.rule=Host(`painel-evo.advancedbot.com.br`) && PathPrefix(`/api`)"
+        - "traefik.http.routers.painel-evo-api.rule=Host(`painelevo.advancedbot.com.br`) && PathPrefix(`/api`)"
         - "traefik.http.routers.painel-evo-api.entrypoints=websecure"
         - "traefik.http.routers.painel-evo-api.tls.certresolver=letsencrypt"
         - "traefik.http.services.painel-evo-api.loadbalancer.server.port=3000"
@@ -54,7 +54,7 @@ services:
           memory: 256M
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.painel-evo-web.rule=Host(`painel-evo.advancedbot.com.br`)"
+        - "traefik.http.routers.painel-evo-web.rule=Host(`painelevo.advancedbot.com.br`)"
         - "traefik.http.routers.painel-evo-web.entrypoints=websecure"
         - "traefik.http.routers.painel-evo-web.tls.certresolver=letsencrypt"
         - "traefik.http.services.painel-evo-web.loadbalancer.server.port=80"
