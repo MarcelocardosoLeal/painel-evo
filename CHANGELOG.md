@@ -14,7 +14,38 @@
   - Melhor experiência do usuário
   - Redução de fadiga visual
   - Interface moderna e acessível
-- **Status:** 📋 Pendente
+- **Status:** ✅ Implementado
+
+---
+
+## 🚀 v1.2.0 - Sistema de Temas Dark/Light Mode (26/12/2024)
+
+### 🎨 **NOVA FUNCIONALIDADE - SISTEMA DE TEMAS**
+
+#### ✨ **Funcionalidades Implementadas**
+- **Toggle de Tema:** Botão no header para alternar entre tema claro e escuro
+- **Persistência:** Preferência do usuário salva no localStorage
+- **Transições Suaves:** Animações de 0.3s para mudanças de tema
+- **Detecção Automática:** Suporte à preferência do sistema operacional
+- **Variáveis CSS:** Sistema completo de variáveis para cores e estilos
+
+#### 📁 **Arquivos Criados/Modificados**
+1. **Novo:** `frontend/src/composables/useTheme.js` - Composable para gerenciamento de tema
+2. **Modificado:** `frontend/src/App.vue` - Variáveis CSS e estilos base
+3. **Modificado:** `frontend/src/views/Dashboard.vue` - Toggle de tema e aplicação de variáveis
+4. **Modificado:** `CHANGELOG.md` - Documentação da implementação
+
+#### 🎯 **Benefícios Alcançados**
+- **UX Melhorada:** Interface adaptável às preferências do usuário
+- **Acessibilidade:** Redução de fadiga visual com tema escuro
+- **Modernidade:** Interface contemporânea com transições suaves
+- **Personalização:** Experiência customizável para cada usuário
+
+#### 🔧 **Detalhes Técnicos**
+- **Composable Vue 3:** Gerenciamento reativo de estado
+- **CSS Variables:** Sistema flexível de cores e estilos
+- **LocalStorage:** Persistência de preferências
+- **Media Queries:** Detecção automática de preferência do sistema
 
 ---
 
