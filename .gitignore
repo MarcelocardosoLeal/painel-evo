@@ -107,10 +107,6 @@ Thumbs.db
 prisma/dev.db*
 prisma/migrations/**/migration.sql
 
-# Docker
-.dockerignore
-docker-compose.override.yml
-
 # Temporary files
 *.tmp
 *.temp

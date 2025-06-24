@@ -1,22 +1,22 @@
-# 🆘 **TROUBLESHOOTING - PAINEL EVO**
+# 🆘 Solução de Problemas - Painel Evolution
 
-## 📖 **COMO USAR ESTE GUIA**
+## 🚨 Problemas Críticos Resolvidos
 
-### 🎯 **Ordem Recomendada para Resolver Problemas:**
+### ❌ **Erro: "Cannot POST /manager/instance/create"**
+**Causa:** Endpoint incorreto na Evolution API  
+**✅ Solução:** Corrigido para `/instance/create`
 
-1. **🆘 TROUBLESHOOTING.md** (este arquivo) - Soluções rápidas
-2. **📖 DOCUMENTACAO_COMPLETA.md** - Seção "PROBLEMAS COMUNS E SOLUÇÕES"
-3. **📝 CHANGELOG.md** - Seção "CÓDIGO CRÍTICO CORRIGIDO"
-4. **📋 README.md** - Se precisar reconstruir do zero
+### ❌ **Erro: "Webhook endpoint not found"**
+**Causa:** Configuração de webhook incorreta  
+**✅ Solução:** Webhook configurado corretamente no Evolution API
 
-### 🔍 **Navegação Rápida neste Arquivo:**
-- 🚨 **PROBLEMAS MAIS COMUNS** (abaixo)
-- 🔍 **CHECKLIST DE VERIFICAÇÃO RÁPIDA**
-- 🆘 **RECONSTRUÇÃO COMPLETA**
+### ❌ **Problema: Instâncias não aparecem no painel**
+**Causa:** Falta de sincronização entre Evolution API e banco local  
+**✅ Solução:** Sistema de sincronização automática implementado
 
 ---
 
-## 🚨 PROBLEMAS MAIS COMUNS E SOLUÇÕES RÁPIDAS
+## 🔧 Problemas Comuns
 
 ### ❌ Erro: "Cannot POST /manager/instance/create"
 

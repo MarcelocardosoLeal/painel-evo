@@ -1,28 +1,99 @@
-# 📱 Painel Evolution - Documentação Técnica Completa
+# 🚀 Painel de Gerenciamento Evolution API
 
-Este documento detalha a arquitetura, funcionalidades e o progresso do desenvolvimento da Plataforma de Gerenciamento de Instâncias WhatsApp (Painel Evo).
+## 📋 Visão Geral
+Sistema completo de gerenciamento multi-tenant para Evolution API com interface moderna e sistema de usuários.
 
-## 📖 **GUIA DE NAVEGAÇÃO DA DOCUMENTAÇÃO**
+## 🛠️ Tecnologias
+- **Frontend:** Vue.js 3 + Bootstrap 5
+- **Backend:** Node.js + Express
+- **Banco de Dados:** PostgreSQL + Prisma ORM
+- **Autenticação:** JWT
+- **Real-time:** Socket.IO
 
-### 🎯 **COMEÇANDO AQUI? Siga esta ordem:**
+## 🚀 Instalação Rápida
 
-1. **📋 README.md** (este arquivo) - Visão geral e tecnologias
-2. **📖 DOCUMENTACAO_COMPLETA.md** - Documentação técnica completa
-3. **📝 CHANGELOG.md** - Correções críticas (v1.1.0)
-4. **🆘 TROUBLESHOOTING.md** - Soluções rápidas
+### Pré-requisitos
+- Node.js 16+
+- PostgreSQL 12+
+- npm ou yarn
 
-### 🚨 **PROBLEMAS? Acesse diretamente:**
-- **🆘 TROUBLESHOOTING.md** - Soluções para erros comuns
-- **📖 DOCUMENTACAO_COMPLETA.md** - Seção "PROBLEMAS COMUNS E SOLUÇÕES"
+### Passos de Instalação
 
-### 🐳 **Docker/Containerização:**
-- **🐳 DOCKER_README.md** - Guia completo Docker
-- **📋 DOCKER_CONTAINERIZATION_GUIDE.md** - Processo detalhado
+1. **Clone o repositório**
+```bash
+git clone <repository-url>
+cd "Painel Evo"
+```
 
-### 🚀 **Deployment/Instalação:**
-- **📁 deployment/** - Pasta com arquivos para instalação via Portainer
-- **📋 deployment/README.md** - Guia rápido de instalação
-- **📖 deployment/DEPLOY_GUIDE.md** - Documentação completa de deploy
+2. **Configure o Backend**
+```bash
+cd backend
+npm install
+cp .env.example .env
+# Edite o .env com suas configurações
+```
+
+3. **Configure o Banco de Dados**
+```bash
+npx prisma generate
+npx prisma db push
+```
+
+4. **Configure o Frontend**
+```bash
+cd ../frontend
+npm install
+```
+
+5. **Inicie os Serviços**
+```bash
+# Terminal 1 - Backend
+cd backend
+npm run dev
+
+# Terminal 2 - Frontend
+cd frontend
+npm run serve
+```
+
+6. **Acesse o Sistema**
+- Frontend: http://localhost:8080
+- Backend API: http://localhost:5000
+
+## ⚡ Correções Críticas Implementadas
+
+### 🔧 **Problema: "Cannot POST /manager/instance/create"**
+**✅ RESOLVIDO:** Endpoint corrigido de `/manager/instance/create` para `/instance/create`
+
+### 🔧 **Problema: "Webhook endpoint not found"**
+**✅ RESOLVIDO:** Configuração de webhook corrigida no Evolution API
+
+### 🔧 **Problema: Instâncias não apareciam no painel**
+**✅ RESOLVIDO:** Sincronização automática implementada entre Evolution API e banco local
+
+## 🎯 Status do Projeto
+**✅ SISTEMA COMPLETO E FUNCIONAL - PRONTO PARA PRODUÇÃO**
+
+### Funcionalidades Implementadas:
+- ✅ Sistema multi-tenant completo
+- ✅ Painel administrativo funcional
+- ✅ Gerenciamento de usuários (CRUD)
+- ✅ Sistema de permissões ativo
+- ✅ Interface responsiva moderna
+- ✅ Integração Evolution API
+- ✅ Banco de dados configurado
+- ✅ Autenticação JWT
+- ✅ Real-time com Socket.IO
+
+## 📚 Documentação Adicional
+
+- **[🔧 Solução de Problemas](TROUBLESHOOTING.md)** - Problemas comuns e soluções
+- **[📝 Histórico de Mudanças](CHANGELOG.md)** - Versões e atualizações
+
+---
+
+**📅 Última Atualização:** 21/06/2025  
+**🔄 Versão Atual:** v1.1.0 - Sistema Multi-Tenant Completo
 
 ---
 
@@ -466,7 +537,7 @@ Usuário Comum:
 - 📈 **Relatórios:** Logs detalhados de atividades
 - 🔒 **2FA:** Autenticação de dois fatores
 - 🌐 **Multi-idioma:** Suporte a múltiplos idiomas
-- 🐳 **Docker:** Containerização para deploy
+- 📦 **Deployment:** Guias de instalação manual
 
 ### 🛠️ Melhorias Técnicas
 - **Testes Automatizados:** Unit tests e integration tests

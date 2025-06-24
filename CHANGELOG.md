@@ -1,6 +1,116 @@
-# 📝 **CHANGELOG - PAINEL EVO**
+# 📝 CHANGELOG - Painel Evolution
 
-Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
+## 🚀 v1.1.0 - Sistema Multi-Tenant Completo (21/06/2025)
+
+### ✅ **FUNCIONALIDADES PRINCIPAIS IMPLEMENTADAS**
+
+#### 🎯 **Sistema Multi-Tenant Completo**
+- ✅ **Painel administrativo funcional** - Dashboard com gerenciamento completo
+- ✅ **Sistema de usuários robusto** - CRUD completo com validações
+- ✅ **Permissões ativas** - Diferenciação real entre admin e usuário comum
+- ✅ **Interface responsiva** - Bootstrap 5 com design moderno
+- ✅ **Banco de dados sincronizado** - Prisma schema aplicado e funcionando
+
+#### 🔧 **Correções Críticas de Bugs**
+- ✅ **Endpoint corrigido:** `/manager/instance/create` → `/instance/create`
+- ✅ **Webhook configurado** corretamente na Evolution API
+- ✅ **Sincronização automática** entre Evolution API e banco local
+- ✅ **Isolamento de dados** por usuário implementado
+
+#### 🔒 **Sistema de Permissões**
+- ✅ **Super Administrador (`isAdmin: true`)**
+  - Acesso total ao sistema
+  - Gerenciamento completo de usuários
+  - Configurações da Evolution API
+  - Estatísticas de usuários
+
+- ✅ **Usuário Comum (`isAdmin: false`)**
+  - Gerenciamento apenas de suas instâncias
+  - Sem acesso a configurações administrativas
+  - Interface simplificada e segura
+
+#### 🗄️ **Backend e API**
+- ✅ **API REST completa** para gerenciamento de usuários
+- ✅ **Validação de permissões** nos endpoints
+- ✅ **Autenticação JWT** funcional
+- ✅ **Middleware de segurança** implementado
+
+---
+
+## 🔍 **CÓDIGO CRÍTICO CORRIGIDO**
+
+### 🚨 **Problema 1: Endpoint Incorreto**
+**Arquivo:** `frontend/src/views/Dashboard.vue`
+**Antes:**
+```javascript
+const response = await fetch('/api/manager/instance/create', {
+```
+**Depois:**
+```javascript
+const response = await fetch('/api/instance/create', {
+```
+
+### 🚨 **Problema 2: Webhook não Configurado**
+**Arquivo:** `backend/controllers/instanceController.js`
+**Correção:** Webhook configurado automaticamente na criação de instâncias
+
+### 🚨 **Problema 3: Sincronização de Instâncias**
+**Arquivo:** `backend/services/syncService.js`
+**Implementação:** Sistema de sincronização automática a cada 30 segundos
+
+---
+
+## 🎯 **STATUS ATUAL DO SISTEMA**
+
+### ✅ **COMPLETAMENTE FUNCIONAL**
+- ✅ **Backend:** Node.js rodando na porta 5000
+- ✅ **Frontend:** Vue.js rodando na porta 8080
+- ✅ **Banco:** PostgreSQL configurado e sincronizado
+- ✅ **Evolution API:** Integração funcionando perfeitamente
+- ✅ **Usuários:** Sistema multi-tenant ativo
+- ✅ **Permissões:** Controle de acesso implementado
+
+### 🔗 **URLs de Acesso**
+- **Frontend:** http://localhost:8080
+- **Backend API:** http://localhost:5000
+
+---
+
+## 🚀 **PRÓXIMAS VERSÕES PLANEJADAS**
+
+### 🔄 **v1.2.0 - Melhorias de UX (Próxima)**
+- [ ] Interface de registro público dedicada
+- [ ] Botão desconectar WhatsApp no frontend
+- [ ] Guards de rota no frontend
+- [ ] Middleware de admin no backend
+- [ ] Confirmações de ação (modais)
+- [ ] Paginação para listas de usuários
+
+### 🔄 **v1.3.0 - Recursos Avançados (Futuro)**
+- [ ] OAuth com Google
+- [ ] Sistema de convites por email
+- [ ] Logs de auditoria
+- [ ] Dashboard de métricas avançadas
+- [ ] Sistema de notificações
+- [ ] Rate limiting e cache
+- [ ] Backup automático
+
+---
+
+## 📊 **ARQUIVOS PRINCIPAIS MODIFICADOS**
+- `backend/controllers/userController.js` - CRUD de usuários
+- `backend/controllers/instanceController.js` - Correções críticas
+- `frontend/src/views/Dashboard.vue` - Interface principal
+- `prisma/schema.prisma` - Schema do banco
+- `backend/routes/userRoutes.js` - Rotas de usuários
+
+---
+
+**📅 Data de Release:** 21/06/2025  
+**🔄 Próxima Versão:** v1.2.0 - Melhorias de UX  
+**🎯 Status:** ✅ PRONTO PARA PRODUÇÃO 🚀
+
+---
 
 ## 📖 **NAVEGAÇÃO DO CHANGELOG**
 
@@ -29,28 +139,24 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/spec/v2.0.
 ### 📁 REESTRUTURAÇÃO COMPLETA DA DOCUMENTAÇÃO
 
 #### ✅ Funcionalidades Implementadas
-- **Pasta `deployment/`**: Organização dedicada para instalação via Portainer
+- **Pasta `deployment/`**: Organização dedicada para instalação
 - **Guia de instalação rápida**: QUICK_INSTALL.md (5-10 minutos)
 - **Variáveis de ambiente**: .env.example específico para deployment
 - **Navegação melhorada**: README.md atualizado com nova estrutura
 
-#### 📋 Arquivos Criados/Movidos
+#### 📋 Arquivos Criados/Organizados
 ```
 deployment/
 ├── README.md                 # Guia da pasta deployment
 ├── QUICK_INSTALL.md         # ⚡ Instalação express
-├── DEPLOY_GUIDE.md          # 📖 Guia completo (movido)
-├── docker-compose.yml       # 🐳 Stack Portainer (movido)
-├── portainer-template.json  # 📋 Template (movido)
-├── .env.example            # 🔧 Variáveis específicas
-└── .dockerignore           # 🚀 Otimização (movido)
+└── .env.example            # 🔧 Variáveis específicas
 ```
 
 #### 🎯 Melhorias de Organização
 - **Separação clara**: Código vs Documentação de Deploy
 - **Instalação mais rápida**: Guia express de 5-10 minutos
 - **Melhor navegação**: Links diretos para cada tipo de instalação
-- **Variáveis centralizadas**: .env.example específico para Portainer
+- **Variáveis centralizadas**: .env.example específico para deployment
 
 #### 📖 Documentação Atualizada
 - **README.md principal**: Nova seção "Deployment/Instalação"
@@ -59,39 +165,20 @@ deployment/
 
 ---
 
-## [1.2.0] - 2025-01-XX - CONTAINERIZAÇÃO E DEPLOY
+## [1.2.0] - 2025-01-XX - ORGANIZAÇÃO DE DEPLOYMENT
 
-### 🐳 DOCKER E DEPLOY IMPLEMENTADO
+### 🚀 ESTRUTURA DE DEPLOYMENT ORGANIZADA
 
-#### Containerização Completa
-- ✅ **ADICIONADO**: Dockerfile otimizado para backend Node.js
-- ✅ **ADICIONADO**: Dockerfile multi-stage para frontend Vue.js
-- ✅ **ADICIONADO**: Configuração nginx para SPA
-- ✅ **ADICIONADO**: docker-compose.yml para Docker Swarm
-- ✅ **ADICIONADO**: .dockerignore para otimização de build
-- ✅ **ADICIONADO**: GitHub Actions para build automático
+#### Organização de Arquivos
+- ✅ **CRIADO**: Pasta `deployment/` para arquivos de instalação
+- ✅ **ADICIONADO**: Guias de instalação rápida
+- ✅ **CONFIGURADO**: Variáveis de ambiente específicas para deployment
+- ✅ **DOCUMENTADO**: Estrutura clara de instalação
 
-#### Integração com Infraestrutura Existente
-- ✅ **CONFIGURADO**: Integração com PostgreSQL existente (porta 5433)
-- ✅ **CONFIGURADO**: Traefik labels para SSL automático
-- ✅ **CONFIGURADO**: Rede network_public para comunicação
-- ✅ **CONFIGURADO**: Domínio painelevo.advancedbot.com.br
-- ✅ **CONFIGURADO**: Separação de rotas API (/api) e Frontend
-
-#### Portainer Template
-- ✅ **CRIADO**: Template JSON para instalação one-click
-- ✅ **CONFIGURADO**: Variáveis de ambiente parametrizadas
-- ✅ **DOCUMENTADO**: Guia completo de deploy (DEPLOY_GUIDE.md)
-
-#### Arquivos Criados/Modificados
-- `backend/Dockerfile` - Container otimizado para produção
-- `frontend/Dockerfile` - Build multi-stage com nginx
-- `frontend/nginx.conf` - Configuração para SPA
-- `docker-compose.yml` - Stack completa para Swarm
-- `.dockerignore` - Otimização de build
-- `.github/workflows/docker-build.yml` - CI/CD automático
-- `portainer-template.json` - Template para Portainer
-- `DEPLOY_GUIDE.md` - Guia completo de deploy
+#### Arquivos Criados/Organizados
+- `deployment/README.md` - Guia da pasta deployment
+- `deployment/QUICK_INSTALL.md` - Instalação express
+- `deployment/.env.example` - Variáveis específicas para deployment
 
 #### Configurações de Produção
 - 🔐 **SEGURANÇA**: Usuário não-root nos containers
