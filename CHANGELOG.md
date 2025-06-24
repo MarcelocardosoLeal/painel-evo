@@ -1,4 +1,22 @@
-# 📝 CHANGELOG - Painel Evolution
+# 📋 CHANGELOG - Painel Evolution API
+
+## 📋 **MELHORIAS FUTURAS PLANEJADAS**
+
+### 🎨 **Sistema de Temas (Dark/Light Mode)**
+- **Prioridade:** Alta
+- **Descrição:** Implementar alternância entre tema escuro e claro
+- **Funcionalidades:**
+  - Toggle de tema no header da aplicação
+  - Persistência da preferência do usuário no localStorage
+  - Transições suaves entre temas
+  - Suporte a preferência do sistema operacional
+- **Benefícios:**
+  - Melhor experiência do usuário
+  - Redução de fadiga visual
+  - Interface moderna e acessível
+- **Status:** 📋 Pendente
+
+---
 
 ## 🚀 v1.1.2 - Correção de Erro qrCode vs qrCodeBase64 (25/12/2024)
 
