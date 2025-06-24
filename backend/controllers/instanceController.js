@@ -294,7 +294,8 @@ const connectInstance = asyncHandler(async (req, res) => {
             throw new Error('Instância não encontrada.');
         }
 
-        if (instance.userId !== userId) {
+        // Super Admin pode acessar qualquer instância, usuários comuns só as suas
+        if (!req.user.isAdmin && instance.userId !== userId) {
             res.status(403);
             throw new Error('Usuário não autorizado a acessar esta instância.');
         }
@@ -388,7 +389,7 @@ const connectInstance = asyncHandler(async (req, res) => {
         if (req.io) {
             req.io.to(userId.toString()).emit('instance:qrcode', { 
                 instanceId, 
-                qrCode: qrCodeBase64,
+                qrCodeBase64: qrCodeBase64,
                 pairingCode: qrCodeData.pairingCode,
                 status: instanceStatus
             });
@@ -445,7 +446,8 @@ const logoutInstance = asyncHandler(async (req, res) => {
             throw new Error('Instância não encontrada.');
         }
 
-        if (instance.userId !== userId) {
+        // Super Admin pode modificar qualquer instância, usuários comuns só as suas
+        if (!req.user.isAdmin && instance.userId !== userId) {
             res.status(403);
             throw new Error('Usuário não autorizado a modificar esta instância.');
         }
@@ -480,7 +482,7 @@ const logoutInstance = asyncHandler(async (req, res) => {
         // 4. Atualizar o status da instância no banco de dados
         const updatedInstance = await prisma.instance.update({
             where: { id: parseInt(instanceId) },
-            data: { status: 'disconnected', qrCode: null }, // Atualiza o status e limpa o QR code
+            data: { status: 'disconnected', qrCodeBase64: null }, // Atualiza o status e limpa o QR code
         });
 
         // Emitir evento Socket.IO para notificar o frontend sobre a mudança de status
@@ -524,7 +526,8 @@ const deleteInstance = asyncHandler(async (req, res) => {
             throw new Error('Instância não encontrada.');
         }
 
-        if (instance.userId !== userId) {
+        // Super Admin pode excluir qualquer instância, usuários comuns só as suas
+        if (!req.user.isAdmin && instance.userId !== userId) {
             res.status(403);
             throw new Error('Usuário não autorizado a excluir esta instância.');
         }
@@ -615,11 +618,13 @@ const getQrCode = asyncHandler(async (req, res) => {
 
   console.log(`Buscando QR Code para instância ${instanceId} do usuário ${userId}`);
 
+  // Super Admin pode acessar qualquer instância, usuários comuns só as suas
+  const whereClause = req.user.isAdmin 
+    ? { id: parseInt(instanceId) }
+    : { id: parseInt(instanceId), userId: userId };
+    
   const instance = await prisma.instance.findFirst({
-    where: { 
-      id: parseInt(instanceId), 
-      userId: userId 
-    }
+    where: whereClause
   });
 
   if (!instance) {

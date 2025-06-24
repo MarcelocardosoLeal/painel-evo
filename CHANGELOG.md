@@ -1,5 +1,52 @@
 # 📝 CHANGELOG - Painel Evolution
 
+## 🚀 v1.1.2 - Correção de Erro qrCode vs qrCodeBase64 (25/12/2024)
+
+### 🐛 **CORREÇÃO CRÍTICA DE CAMPO**
+
+#### 🛡️ **Problema Identificado e Corrigido**
+- **Descrição:** Erro "Unknown argument `qrCode`" ao tentar pausar instâncias
+- **Causa:** Uso inconsistente de `qrCode` em vez de `qrCodeBase64` em operações do Prisma
+- **Impacto:** Causava desconexão inesperada ao pausar instâncias
+
+#### ✅ **Correções Implementadas**
+1. **Linha 390:** Corrigido evento Socket.IO `instance:qrcode` para usar `qrCodeBase64`
+2. **Linha 477:** Corrigido update do Prisma no `logoutInstance` para usar `qrCodeBase64: null`
+
+#### 📝 **Arquivo Modificado**
+- `backend/controllers/instanceController.js` - Correções de nomenclatura de campos
+
+#### 🎯 **Resultado**
+- **Eliminação:** Erro ao pausar instâncias resolvido
+- **Funcionamento:** Eventos Socket.IO operando corretamente
+- **Estabilidade:** Operações do Prisma executando sem erros
+
+---
+
+## 🚀 v1.1.1 - Correção de Permissões Super Admin (21/06/2025)
+
+### 🔧 **CORREÇÕES CRÍTICAS DE PERMISSÃO**
+
+#### 🛡️ **Problema Identificado e Corrigido**
+- **Descrição:** Super Admin não conseguia excluir/pausar instâncias criadas por usuários comuns
+- **Causa:** Verificações de `userId` impediam Super Admin de gerenciar instâncias de outros usuários
+- **Impacto:** Limitava funcionalidade administrativa essencial
+
+#### ✅ **Funções Corrigidas**
+1. **`deleteInstance`** - Super Admin pode excluir qualquer instância
+2. **`logoutInstance`** - Super Admin pode desconectar qualquer instância  
+3. **`connectInstance`** - Super Admin pode conectar qualquer instância
+4. **`getQrCode`** - Super Admin pode acessar QR Code de qualquer instância
+
+#### 📝 **Arquivos Modificados**
+- `backend/controllers/instanceController.js` - Adicionadas verificações `!req.user.isAdmin`
+
+#### 🎯 **Comportamento Atual**
+- **Super Admin (`isAdmin: true`):** Acesso total a todas as instâncias
+- **Usuário Comum (`isAdmin: false`):** Acesso apenas às próprias instâncias
+
+---
+
 ## 🚀 v1.1.0 - Sistema Multi-Tenant Completo (21/06/2025)
 
 ### ✅ **FUNCIONALIDADES PRINCIPAIS IMPLEMENTADAS**
