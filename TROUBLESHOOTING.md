@@ -1,22 +1,22 @@
-# 🆘 Solução de Problemas - Painel Evolution
+# 🆘 **TROUBLESHOOTING - PAINEL EVO**
 
-## 🚨 Problemas Críticos Resolvidos
+## 📖 **COMO USAR ESTE GUIA**
 
-### ❌ **Erro: "Cannot POST /manager/instance/create"**
-**Causa:** Endpoint incorreto na Evolution API  
-**✅ Solução:** Corrigido para `/instance/create`
+### 🎯 **Ordem Recomendada para Resolver Problemas:**
 
-### ❌ **Erro: "Webhook endpoint not found"**
-**Causa:** Configuração de webhook incorreta  
-**✅ Solução:** Webhook configurado corretamente no Evolution API
+1. **🆘 TROUBLESHOOTING.md** (este arquivo) - Soluções rápidas
+2. **📖 DOCUMENTACAO_COMPLETA.md** - Seção "PROBLEMAS COMUNS E SOLUÇÕES"
+3. **📝 CHANGELOG.md** - Seção "CÓDIGO CRÍTICO CORRIGIDO"
+4. **📋 README.md** - Se precisar reconstruir do zero
 
-### ❌ **Problema: Instâncias não aparecem no painel**
-**Causa:** Falta de sincronização entre Evolution API e banco local  
-**✅ Solução:** Sistema de sincronização automática implementado
+### 🔍 **Navegação Rápida neste Arquivo:**
+- 🚨 **PROBLEMAS MAIS COMUNS** (abaixo)
+- 🔍 **CHECKLIST DE VERIFICAÇÃO RÁPIDA**
+- 🆘 **RECONSTRUÇÃO COMPLETA**
 
 ---
 
-## 🔧 Problemas Comuns
+## 🚨 PROBLEMAS MAIS COMUNS E SOLUÇÕES RÁPIDAS
 
 ### ❌ Erro: "Cannot POST /manager/instance/create"
 
@@ -135,7 +135,7 @@ cd frontend
 npm install
 
 # 2. Iniciar servidor de desenvolvimento
-npm run serve
+npm run dev
 
 # 3. Verificar porta (padrão: 8080)
 # Acessar: http://localhost:8080
@@ -170,7 +170,7 @@ node create-admin.js
 - [ ] Tabela `EvolutionSettings` tem `baseUrl` SEM `/manager`
 
 ### Frontend (Porta 8080)
-- [ ] `cd frontend && npm run serve` roda sem erros
+- [ ] `cd frontend && npm run dev` roda sem erros
 - [ ] `http://localhost:8080` carrega a tela de login
 - [ ] Login funciona e redireciona para dashboard
 - [ ] Não há erros no console do navegador (F12)

@@ -6,7 +6,8 @@ const {
   connectInstance,
   logoutInstance,
   deleteInstance,
-  getQrCode
+  getQrCode,
+  syncInstancesStatus
 } = require('../controllers/instanceController');
 
 const router = express.Router();
@@ -27,5 +28,9 @@ router.route('/:instanceId/logout')
 
 router.route('/:instanceId')
   .delete(protect, userOnly, deleteInstance); // Deletar instância
+
+// Rota para sincronização manual de status
+router.route('/sync/status')
+  .post(protect, userOnly, syncInstancesStatus); // Sincronizar status manualmente
 
 module.exports = router;

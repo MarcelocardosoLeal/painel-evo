@@ -1,99 +1,308 @@
-# 🚀 Painel de Gerenciamento Evolution API
+# 🚀 Painel Evolution - WhatsApp Instance Management Platform
 
-## 📋 Visão Geral
-Sistema completo de gerenciamento multi-tenant para Evolution API com interface moderna e sistema de usuários.
+## 📋 Project Overview
 
-## 🛠️ Tecnologias
-- **Frontend:** Vue.js 3 + Bootstrap 5
-- **Backend:** Node.js + Express
-- **Banco de Dados:** PostgreSQL + Prisma ORM
-- **Autenticação:** JWT
-- **Real-time:** Socket.IO
+**Painel Evolution** is a comprehensive web application for managing WhatsApp instances through Evolution API integration. The system provides a modern, intuitive interface for creating, monitoring, and administering multiple WhatsApp instances with multi-tenant support and secure authentication.
 
-## 🚀 Instalação Rápida
+### 🎯 Key Features
 
-### Pré-requisitos
-- Node.js 16+
-- PostgreSQL 12+
-- npm ou yarn
+- ✅ **JWT Authentication** - Secure login and registration system with fixed middleware
+- ✅ **Instance Management** - Create and monitor WhatsApp instances with real-time sync
+- ✅ **Real-time QR Codes** - Automatic generation and display via Socket.IO
+- ✅ **Admin Panel** - Complete user and configuration management
+- ✅ **Multi-tenant Architecture** - Complete isolation between users
+- ✅ **Modern Interface** - Responsive design with Vue.js 3 and Tailwind CSS
+- ✅ **Real-time Communication** - Socket.IO for instant updates
+- ✅ **Evolution API Integration** - Direct connection with official API (100% functional)
+- ✅ **Automatic Sync System** - Real-time instance status synchronization
+- ✅ **Security Fixes** - All authentication and middleware issues resolved
 
-### Passos de Instalação
+## 🏗️ System Architecture
 
-1. **Clone o repositório**
-```bash
-git clone <repository-url>
-cd "Painel Evo"
+### Backend Stack (Node.js + Express)
+- **Framework**: Express.js with custom middlewares (authentication fixed)
+- **Database**: PostgreSQL with Prisma ORM
+- **Authentication**: JWT with bcryptjs for password hashing (middleware corrected)
+- **Real-time**: Socket.IO for live updates
+- **External API**: Evolution API integration (100% functional)
+- **Security**: CORS protection and input validation
+- **Sync System**: Automatic instance status synchronization
+
+### Frontend Stack (Vue.js 3)
+- **Framework**: Vue.js 3 with Composition API
+- **Build Tool**: Vite 7.0.0 (migrated from Vue CLI for security)
+- **Styling**: Tailwind CSS for modern design
+- **Routing**: Vue Router for SPA navigation
+- **HTTP Client**: Axios for API requests
+- **Real-time**: Socket.IO Client for live updates
+- **Security**: 0 vulnerabilities (all dependencies updated)
+
+### Database Schema
+- **Users**: Complete authentication system with admin roles
+- **Instances**: WhatsApp instance management with real-time status tracking
+- **Evolution Settings**: API configuration and credentials (corrected URLs)
+
+## 📁 Project Structure
+
+```
+painel-evo/
+├── backend/                 # Node.js Server
+│   ├── controllers/         # Business logic handlers
+│   ├── middlewares/         # Auth, CORS, validation
+│   ├── routes/             # API endpoint definitions
+│   ├── services/           # External API services
+│   ├── prisma/             # Database connection
+│   └── server.js           # Main server file
+├── frontend/               # Vue.js Application
+│   ├── src/
+│   │   ├── components/     # Reusable Vue components
+│   │   ├── views/          # Page components
+│   │   ├── router/         # Route configuration
+│   │   └── assets/         # Static resources
+│   └── public/             # Public files
+├── prisma/                 # Database Schema
+│   ├── schema.prisma       # Database definition
+│   └── migrations/         # Database migrations
+└── docs/                   # Documentation
+    ├── PLANNING.md         # Architecture & planning
+    ├── TASK.md            # Current development tasks
+    ├── DOCUMENTACAO_COMPLETA.md
+    ├── CHANGELOG.md
+    └── INDEX.md
 ```
 
-2. **Configure o Backend**
+## 🔧 Recent Critical Fixes (v1.1.0)
+
+### ✅ Authentication System Fixed
+- **Issue**: Missing `jsonwebtoken` import in `authMiddleware.js`
+- **Solution**: Added proper JWT import and fixed token verification
+- **Result**: User authentication and authorization now working 100%
+
+### ✅ Instance Synchronization Fixed
+- **Issue**: Instances showing `not_found` status despite being connected
+- **Solution**: Implemented automatic sync system with Evolution API
+- **Result**: Real-time status updates and proper instance management
+
+### ✅ Security Vulnerabilities Resolved
+- **Frontend**: Migrated from Vue CLI to Vite (0 vulnerabilities)
+- **Backend**: Updated all dependencies (0 vulnerabilities)
+- **Result**: Production-ready security posture
+
+### ✅ Evolution API Integration 100% Functional
+- **Issue**: Incorrect webhook endpoints and URL configurations
+- **Solution**: Fixed API endpoints and database configurations
+- **Result**: WhatsApp instance creation and QR code generation working perfectly
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 16+ 
+- PostgreSQL 13+
+- Evolution API instance
+- Git
+
+### 1. Clone Repository
+```bash
+git clone https://github.com/your-username/painel-evo.git
+cd painel-evo
+```
+
+### 2. Backend Setup
 ```bash
 cd backend
 npm install
+
+# Configure environment
 cp .env.example .env
-# Edite o .env com suas configurações
-```
+# Edit .env with your settings
 
-3. **Configure o Banco de Dados**
-```bash
+# Database setup
 npx prisma generate
-npx prisma db push
-```
+npx prisma migrate deploy
 
-4. **Configure o Frontend**
-```bash
-cd ../frontend
-npm install
-```
-
-5. **Inicie os Serviços**
-```bash
-# Terminal 1 - Backend
-cd backend
+# Start development server
 npm run dev
-
-# Terminal 2 - Frontend
-cd frontend
-npm run serve
 ```
 
-6. **Acesse o Sistema**
-- Frontend: http://localhost:8080
-- Backend API: http://localhost:5000
+### 3. Frontend Setup
+```bash
+# Open new terminal
+cd frontend
+npm install
+npm run dev
+```
 
-## ⚡ Correções Críticas Implementadas
+### 4. Environment Configuration
 
-### 🔧 **Problema: "Cannot POST /manager/instance/create"**
-**✅ RESOLVIDO:** Endpoint corrigido de `/manager/instance/create` para `/instance/create`
+Create `.env` file in backend directory:
 
-### 🔧 **Problema: "Webhook endpoint not found"**
-**✅ RESOLVIDO:** Configuração de webhook corrigida no Evolution API
+```env
+# Database
+DATABASE_URL="postgresql://user:password@localhost:5432/painel_evo"
 
-### 🔧 **Problema: Instâncias não apareciam no painel**
-**✅ RESOLVIDO:** Sincronização automática implementada entre Evolution API e banco local
+# Authentication
+JWT_SECRET="your-super-secure-jwt-secret"
 
-## 🎯 Status do Projeto
-**✅ SISTEMA COMPLETO E FUNCIONAL - PRONTO PARA PRODUÇÃO**
+# Evolution API
+EVOLUTION_API_URL="http://localhost:8080"
+EVOLUTION_API_KEY="your-evolution-api-key"
 
-### Funcionalidades Implementadas:
-- ✅ Sistema multi-tenant completo
-- ✅ Painel administrativo funcional
-- ✅ Gerenciamento de usuários (CRUD)
-- ✅ Sistema de permissões ativo
-- ✅ Interface responsiva moderna
-- ✅ Integração Evolution API
-- ✅ Banco de dados configurado
-- ✅ Autenticação JWT
-- ✅ Real-time com Socket.IO
+# Server
+PORT=5000
+```
 
-## 📚 Documentação Adicional
+## 🔧 Technology Stack
 
-- **[🔧 Solução de Problemas](TROUBLESHOOTING.md)** - Problemas comuns e soluções
-- **[📝 Histórico de Mudanças](CHANGELOG.md)** - Versões e atualizações
+### Backend Dependencies
+```json
+{
+  "@prisma/client": "^6.9.0",
+  "axios": "^1.9.0",
+  "bcryptjs": "^2.4.3",
+  "cors": "^2.8.5",
+  "express": "^4.17.1",
+  "jsonwebtoken": "^9.0.0",
+  "socket.io": "^4.8.1"
+}
+```
+
+### Frontend Dependencies
+```json
+{
+  "vue": "^3.2.13",
+  "vue-router": "^4.5.1",
+  "axios": "^1.9.0",
+  "socket.io-client": "^4.8.1",
+  "tailwindcss": "^3.4.17"
+}
+```
+
+## 📊 Development Status
+
+### ✅ Completed Features (v1.1.0)
+- [x] Complete authentication system
+- [x] User CRUD operations (admin)
+- [x] Instance creation and management
+- [x] Evolution API integration
+- [x] Real-time QR code display
+- [x] Responsive dashboard
+- [x] Socket.IO real-time updates
+- [x] Authentication middleware
+- [x] Data validation
+- [x] Error handling
+- [x] Multi-tenant data isolation
+
+### 🔄 Planned Improvements (v1.2.0)
+- [ ] Enhanced dashboard with metrics
+- [ ] Toast notification system
+- [ ] Detailed logging system
+- [ ] Mobile responsiveness improvements
+- [ ] Two-factor authentication (2FA)
+- [ ] Session timeout management
+- [ ] Audit logging
+- [ ] Performance optimizations
+- [ ] Backup and restore functionality
+- [ ] Advanced error handling
+
+## 🔗 Documentation Navigation
+
+For detailed information, please refer to:
+
+- **[📋 PLANNING.md](./PLANNING.md)** - Architecture and development planning
+- **[📋 TASK.md](./TASK.md)** - Current development tasks and roadmap
+- **[📖 DOCUMENTACAO_COMPLETA.md](./DOCUMENTACAO_COMPLETA.md)** - Complete technical guide
+- **[📋 CHANGELOG.md](./CHANGELOG.md)** - Version history and fixes
+- **[🗂️ INDEX.md](./INDEX.md)** - Documentation index and navigation
+
+## 🐛 Critical Fixes Implemented
+
+This version includes essential fixes for system functionality:
+
+### 🔧 Connectivity Fixes
+- **Socket.IO CORS**: Fixed configuration to allow frontend connections
+- **Evolution API**: Corrected endpoints for proper integration
+- **Authentication**: JWT middleware working correctly
+- **Database**: Stabilized Prisma connection
+
+### 🛠️ Code Improvements
+- **Structure**: Enhanced file organization
+- **Error Handling**: Robust error handling implementation
+- **Validation**: Proper input data validation
+- **Security**: Implementation of security best practices
+- **Performance**: Optimized database queries
+
+## 🚀 Deployment
+
+### Production Setup
+```bash
+# Backend production
+cd backend
+npm install --production
+npm start
+
+# Frontend build
+cd frontend
+npm run build
+# Serve dist/ folder with your web server
+```
+
+### Docker Support
+```bash
+# Build and run with Docker
+docker-compose up -d
+```
+
+## 🔒 Security Features
+
+- JWT token-based authentication
+- Password hashing with bcryptjs
+- CORS protection
+- Input validation and sanitization
+- Multi-tenant data isolation
+- Environment variable configuration
+- Secure session management
+
+## 📞 Support & Contributing
+
+For questions, issues, or suggestions:
+
+1. Check the [complete documentation](./DOCUMENTACAO_COMPLETA.md)
+2. Review [current tasks](./TASK.md)
+3. Open an issue on GitHub
+4. Contact the development team
+
+### Contributing Guidelines
+- Follow existing code patterns
+- Write descriptive commit messages
+- Test changes locally
+- Update documentation for new features
+- Follow security best practices
 
 ---
 
-**📅 Última Atualização:** 21/06/2025  
-**🔄 Versão Atual:** v1.1.0 - Sistema Multi-Tenant Completo
+**Current Version**: 1.1.0  
+**Status**: ✅ Production Ready  
+**Last Updated**: January 2025  
+**License**: ISC
+
+This document details the architecture, features, and development progress of the WhatsApp Instance Management Platform (Painel Evo).
+
+## 📖 **GUIA DE NAVEGAÇÃO DA DOCUMENTAÇÃO**
+
+### 🎯 **COMEÇANDO AQUI? Siga esta ordem:**
+
+1. **📋 README.md** (este arquivo) - Visão geral e tecnologias
+2. **📖 DOCUMENTACAO_COMPLETA.md** - Documentação técnica completa
+3. **📝 CHANGELOG.md** - Correções críticas (v1.1.0)
+4. **🆘 TROUBLESHOOTING.md** - Soluções rápidas
+
+### 🚨 **PROBLEMAS? Acesse diretamente:**
+- **🆘 TROUBLESHOOTING.md** - Soluções para erros comuns
+- **📖 DOCUMENTACAO_COMPLETA.md** - Seção "PROBLEMAS COMUNS E SOLUÇÕES"
+
+### 🐳 **Docker/Containerização:**
+- **🐳 DOCKER_README.md** - Guia completo Docker
+- **📋 DOCKER_CONTAINERIZATION_GUIDE.md** - Processo detalhado
 
 ---
 
@@ -120,7 +329,7 @@ O objetivo principal é criar uma plataforma web que permita aos usuários geren
 
 ### Frontend
 - **Framework:** Vue.js 3.2.13 (Composition API)
-- **Build Tool:** Vue CLI 5.0.0
+- **Build Tool:** Vite 7.0.0
 - **Roteamento:** Vue Router 4.5.1
 - **HTTP Client:** Axios 1.9.0
 - **WebSocket Client:** Socket.IO Client 4.8.1
@@ -243,7 +452,7 @@ O esquema do banco de dados foi definido em `prisma/schema.prisma` e inclui os s
 ### ✅ CONCLUÍDO - Frontend (100% Funcional - FINALIZADO)
 
 #### Estrutura e Configuração
-- ✅ Projeto Vue.js 3 configurado com Vue CLI
+- ✅ Projeto Vue.js 3 configurado com Vite
 - ✅ Sistema de roteamento com Vue Router
 - ✅ Configuração de Axios para requisições HTTP
 - ✅ Integração com Socket.IO Client
@@ -480,7 +689,7 @@ Usuário Comum:
 
 2. **Executar o frontend:**
    ```bash
-   npm run serve
+   npm run dev
    ```
    O frontend estará rodando em `http://localhost:8080`
 
@@ -537,7 +746,7 @@ Usuário Comum:
 - 📈 **Relatórios:** Logs detalhados de atividades
 - 🔒 **2FA:** Autenticação de dois fatores
 - 🌐 **Multi-idioma:** Suporte a múltiplos idiomas
-- 📦 **Deployment:** Guias de instalação manual
+- 🐳 **Docker:** Containerização para deploy
 
 ### 🛠️ Melhorias Técnicas
 - **Testes Automatizados:** Unit tests e integration tests

@@ -1,212 +1,6 @@
-# 📋 CHANGELOG - Painel Evolution API
+# 📝 **CHANGELOG - PAINEL EVO**
 
-## 📋 **MELHORIAS FUTURAS PLANEJADAS**
-
-### 🎨 **Sistema de Temas (Dark/Light Mode)**
-- **Prioridade:** Alta
-- **Descrição:** Implementar alternância entre tema escuro e claro
-- **Funcionalidades:**
-  - Toggle de tema no header da aplicação
-  - Persistência da preferência do usuário no localStorage
-  - Transições suaves entre temas
-  - Suporte a preferência do sistema operacional
-- **Benefícios:**
-  - Melhor experiência do usuário
-  - Redução de fadiga visual
-  - Interface moderna e acessível
-- **Status:** ✅ Implementado
-
----
-
-## 🚀 v1.2.0 - Sistema de Temas Dark/Light Mode (26/12/2024)
-
-### 🎨 **NOVA FUNCIONALIDADE - SISTEMA DE TEMAS**
-
-#### ✨ **Funcionalidades Implementadas**
-- **Toggle de Tema:** Botão no header para alternar entre tema claro e escuro
-- **Persistência:** Preferência do usuário salva no localStorage
-- **Transições Suaves:** Animações de 0.3s para mudanças de tema
-- **Detecção Automática:** Suporte à preferência do sistema operacional
-- **Variáveis CSS:** Sistema completo de variáveis para cores e estilos
-
-#### 📁 **Arquivos Criados/Modificados**
-1. **Novo:** `frontend/src/composables/useTheme.js` - Composable para gerenciamento de tema
-2. **Modificado:** `frontend/src/App.vue` - Variáveis CSS e estilos base
-3. **Modificado:** `frontend/src/views/Dashboard.vue` - Toggle de tema e aplicação de variáveis
-4. **Modificado:** `CHANGELOG.md` - Documentação da implementação
-
-#### 🎯 **Benefícios Alcançados**
-- **UX Melhorada:** Interface adaptável às preferências do usuário
-- **Acessibilidade:** Redução de fadiga visual com tema escuro
-- **Modernidade:** Interface contemporânea com transições suaves
-- **Personalização:** Experiência customizável para cada usuário
-
-#### 🔧 **Detalhes Técnicos**
-- **Composable Vue 3:** Gerenciamento reativo de estado
-- **CSS Variables:** Sistema flexível de cores e estilos
-- **LocalStorage:** Persistência de preferências
-- **Media Queries:** Detecção automática de preferência do sistema
-
----
-
-## 🚀 v1.1.2 - Correção de Erro qrCode vs qrCodeBase64 (25/12/2024)
-
-### 🐛 **CORREÇÃO CRÍTICA DE CAMPO**
-
-#### 🛡️ **Problema Identificado e Corrigido**
-- **Descrição:** Erro "Unknown argument `qrCode`" ao tentar pausar instâncias
-- **Causa:** Uso inconsistente de `qrCode` em vez de `qrCodeBase64` em operações do Prisma
-- **Impacto:** Causava desconexão inesperada ao pausar instâncias
-
-#### ✅ **Correções Implementadas**
-1. **Linha 390:** Corrigido evento Socket.IO `instance:qrcode` para usar `qrCodeBase64`
-2. **Linha 477:** Corrigido update do Prisma no `logoutInstance` para usar `qrCodeBase64: null`
-
-#### 📝 **Arquivo Modificado**
-- `backend/controllers/instanceController.js` - Correções de nomenclatura de campos
-
-#### 🎯 **Resultado**
-- **Eliminação:** Erro ao pausar instâncias resolvido
-- **Funcionamento:** Eventos Socket.IO operando corretamente
-- **Estabilidade:** Operações do Prisma executando sem erros
-
----
-
-## 🚀 v1.1.1 - Correção de Permissões Super Admin (21/06/2025)
-
-### 🔧 **CORREÇÕES CRÍTICAS DE PERMISSÃO**
-
-#### 🛡️ **Problema Identificado e Corrigido**
-- **Descrição:** Super Admin não conseguia excluir/pausar instâncias criadas por usuários comuns
-- **Causa:** Verificações de `userId` impediam Super Admin de gerenciar instâncias de outros usuários
-- **Impacto:** Limitava funcionalidade administrativa essencial
-
-#### ✅ **Funções Corrigidas**
-1. **`deleteInstance`** - Super Admin pode excluir qualquer instância
-2. **`logoutInstance`** - Super Admin pode desconectar qualquer instância  
-3. **`connectInstance`** - Super Admin pode conectar qualquer instância
-4. **`getQrCode`** - Super Admin pode acessar QR Code de qualquer instância
-
-#### 📝 **Arquivos Modificados**
-- `backend/controllers/instanceController.js` - Adicionadas verificações `!req.user.isAdmin`
-
-#### 🎯 **Comportamento Atual**
-- **Super Admin (`isAdmin: true`):** Acesso total a todas as instâncias
-- **Usuário Comum (`isAdmin: false`):** Acesso apenas às próprias instâncias
-
----
-
-## 🚀 v1.1.0 - Sistema Multi-Tenant Completo (21/06/2025)
-
-### ✅ **FUNCIONALIDADES PRINCIPAIS IMPLEMENTADAS**
-
-#### 🎯 **Sistema Multi-Tenant Completo**
-- ✅ **Painel administrativo funcional** - Dashboard com gerenciamento completo
-- ✅ **Sistema de usuários robusto** - CRUD completo com validações
-- ✅ **Permissões ativas** - Diferenciação real entre admin e usuário comum
-- ✅ **Interface responsiva** - Bootstrap 5 com design moderno
-- ✅ **Banco de dados sincronizado** - Prisma schema aplicado e funcionando
-
-#### 🔧 **Correções Críticas de Bugs**
-- ✅ **Endpoint corrigido:** `/manager/instance/create` → `/instance/create`
-- ✅ **Webhook configurado** corretamente na Evolution API
-- ✅ **Sincronização automática** entre Evolution API e banco local
-- ✅ **Isolamento de dados** por usuário implementado
-
-#### 🔒 **Sistema de Permissões**
-- ✅ **Super Administrador (`isAdmin: true`)**
-  - Acesso total ao sistema
-  - Gerenciamento completo de usuários
-  - Configurações da Evolution API
-  - Estatísticas de usuários
-
-- ✅ **Usuário Comum (`isAdmin: false`)**
-  - Gerenciamento apenas de suas instâncias
-  - Sem acesso a configurações administrativas
-  - Interface simplificada e segura
-
-#### 🗄️ **Backend e API**
-- ✅ **API REST completa** para gerenciamento de usuários
-- ✅ **Validação de permissões** nos endpoints
-- ✅ **Autenticação JWT** funcional
-- ✅ **Middleware de segurança** implementado
-
----
-
-## 🔍 **CÓDIGO CRÍTICO CORRIGIDO**
-
-### 🚨 **Problema 1: Endpoint Incorreto**
-**Arquivo:** `frontend/src/views/Dashboard.vue`
-**Antes:**
-```javascript
-const response = await fetch('/api/manager/instance/create', {
-```
-**Depois:**
-```javascript
-const response = await fetch('/api/instance/create', {
-```
-
-### 🚨 **Problema 2: Webhook não Configurado**
-**Arquivo:** `backend/controllers/instanceController.js`
-**Correção:** Webhook configurado automaticamente na criação de instâncias
-
-### 🚨 **Problema 3: Sincronização de Instâncias**
-**Arquivo:** `backend/services/syncService.js`
-**Implementação:** Sistema de sincronização automática a cada 30 segundos
-
----
-
-## 🎯 **STATUS ATUAL DO SISTEMA**
-
-### ✅ **COMPLETAMENTE FUNCIONAL**
-- ✅ **Backend:** Node.js rodando na porta 5000
-- ✅ **Frontend:** Vue.js rodando na porta 8080
-- ✅ **Banco:** PostgreSQL configurado e sincronizado
-- ✅ **Evolution API:** Integração funcionando perfeitamente
-- ✅ **Usuários:** Sistema multi-tenant ativo
-- ✅ **Permissões:** Controle de acesso implementado
-
-### 🔗 **URLs de Acesso**
-- **Frontend:** http://localhost:8080
-- **Backend API:** http://localhost:5000
-
----
-
-## 🚀 **PRÓXIMAS VERSÕES PLANEJADAS**
-
-### 🔄 **v1.2.0 - Melhorias de UX (Próxima)**
-- [ ] Interface de registro público dedicada
-- [ ] Botão desconectar WhatsApp no frontend
-- [ ] Guards de rota no frontend
-- [ ] Middleware de admin no backend
-- [ ] Confirmações de ação (modais)
-- [ ] Paginação para listas de usuários
-
-### 🔄 **v1.3.0 - Recursos Avançados (Futuro)**
-- [ ] OAuth com Google
-- [ ] Sistema de convites por email
-- [ ] Logs de auditoria
-- [ ] Dashboard de métricas avançadas
-- [ ] Sistema de notificações
-- [ ] Rate limiting e cache
-- [ ] Backup automático
-
----
-
-## 📊 **ARQUIVOS PRINCIPAIS MODIFICADOS**
-- `backend/controllers/userController.js` - CRUD de usuários
-- `backend/controllers/instanceController.js` - Correções críticas
-- `frontend/src/views/Dashboard.vue` - Interface principal
-- `prisma/schema.prisma` - Schema do banco
-- `backend/routes/userRoutes.js` - Rotas de usuários
-
----
-
-**📅 Data de Release:** 21/06/2025  
-**🔄 Próxima Versão:** v1.2.0 - Melhorias de UX  
-**🎯 Status:** ✅ PRONTO PARA PRODUÇÃO 🚀
-
----
+Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 
 ## 📖 **NAVEGAÇÃO DO CHANGELOG**
 
@@ -230,64 +24,23 @@ const response = await fetch('/api/instance/create', {
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Versionamento Semântico](https://semver.org/spec/v2.0.0.html).
 
-## [1.3.0] - 2025-01-XX - ORGANIZAÇÃO DA DOCUMENTAÇÃO
-
-### 📁 REESTRUTURAÇÃO COMPLETA DA DOCUMENTAÇÃO
-
-#### ✅ Funcionalidades Implementadas
-- **Pasta `deployment/`**: Organização dedicada para instalação
-- **Guia de instalação rápida**: QUICK_INSTALL.md (5-10 minutos)
-- **Variáveis de ambiente**: .env.example específico para deployment
-- **Navegação melhorada**: README.md atualizado com nova estrutura
-
-#### 📋 Arquivos Criados/Organizados
-```
-deployment/
-├── README.md                 # Guia da pasta deployment
-├── QUICK_INSTALL.md         # ⚡ Instalação express
-└── .env.example            # 🔧 Variáveis específicas
-```
-
-#### 🎯 Melhorias de Organização
-- **Separação clara**: Código vs Documentação de Deploy
-- **Instalação mais rápida**: Guia express de 5-10 minutos
-- **Melhor navegação**: Links diretos para cada tipo de instalação
-- **Variáveis centralizadas**: .env.example específico para deployment
-
-#### 📖 Documentação Atualizada
-- **README.md principal**: Nova seção "Deployment/Instalação"
-- **deployment/README.md**: Guia completo da pasta
-- **QUICK_INSTALL.md**: Instalação express com verificações
-
----
-
-## [1.2.0] - 2025-01-XX - ORGANIZAÇÃO DE DEPLOYMENT
-
-### 🚀 ESTRUTURA DE DEPLOYMENT ORGANIZADA
-
-#### Organização de Arquivos
-- ✅ **CRIADO**: Pasta `deployment/` para arquivos de instalação
-- ✅ **ADICIONADO**: Guias de instalação rápida
-- ✅ **CONFIGURADO**: Variáveis de ambiente específicas para deployment
-- ✅ **DOCUMENTADO**: Estrutura clara de instalação
-
-#### Arquivos Criados/Organizados
-- `deployment/README.md` - Guia da pasta deployment
-- `deployment/QUICK_INSTALL.md` - Instalação express
-- `deployment/.env.example` - Variáveis específicas para deployment
-
-#### Configurações de Produção
-- 🔐 **SEGURANÇA**: Usuário não-root nos containers
-- 🚀 **PERFORMANCE**: Build otimizado com cache
-- 📊 **RECURSOS**: Limites de CPU e memória definidos
-- 🔄 **CI/CD**: Build automático via GitHub Actions
-- 📦 **REGISTRY**: GitHub Container Registry configurado
-
----
-
-## [1.1.0] - 2025-01-XX - CORREÇÕES CRÍTICAS EVOLUTION API
+## [1.1.0] - 2025-01-XX - CORREÇÕES CRÍTICAS SISTEMA COMPLETO
 
 ### 🔧 CORREÇÕES CRÍTICAS IMPLEMENTADAS
+
+#### Sistema de Autenticação - 100% Funcional
+- ✅ **CORRIGIDO**: Importação ausente do `jsonwebtoken` em `authMiddleware.js`
+- ✅ **CORRIGIDO**: Middleware de autenticação JWT funcionando corretamente
+- ✅ **CORRIGIDO**: Verificação de token e identificação de usuário
+- ✅ **TESTADO**: Login e autorização funcionando para todos os usuários
+- ✅ **TESTADO**: Controle de acesso admin/usuário comum operacional
+
+#### Sistema de Sincronização de Instâncias - 100% Funcional
+- ✅ **CORRIGIDO**: Instâncias mostrando status `not_found` incorretamente
+- ✅ **CORRIGIDO**: Sincronização automática com Evolution API implementada
+- ✅ **CORRIGIDO**: Status das instâncias atualizando em tempo real
+- ✅ **TESTADO**: Script `fix-sync-system.js` corrigindo status das instâncias
+- ✅ **TESTADO**: Instâncias 'Marcelo' e 'Samanta' com status `connected`
 
 #### Integração Evolution API - 100% Funcional
 - ✅ **CORRIGIDO**: Endpoint de webhook alterado de `/webhook/instance` para `/webhook/set/${instanceName}`
@@ -300,10 +53,25 @@ deployment/
 - ✅ **TESTADO**: Status das instâncias atualizando em tempo real
 
 #### Arquivos Modificados
+- `backend/middlewares/authMiddleware.js` - Importação JWT corrigida
 - `backend/services/evolutionService.js` - Endpoint de webhook corrigido
 - Banco de dados - URL base da Evolution API corrigida via Prisma Studio
+- Scripts de sincronização - `fix-sync-system.js` implementado
 
 #### Código Crítico Corrigido
+
+**1. Middleware de Autenticação (authMiddleware.js)**
+```javascript
+// ANTES (INCORRETO) - Faltava importação
+// const jwt = require('jsonwebtoken'); // LINHA AUSENTE
+const { PrismaClient } = require('@prisma/client');
+
+// DEPOIS (CORRETO) - Importação adicionada
+const jwt = require('jsonwebtoken');
+const { PrismaClient } = require('@prisma/client');
+```
+
+**2. Evolution API Service (evolutionService.js)**
 ```javascript
 // ANTES (INCORRETO) - evolutionService.js
 const webhookUrl = `${baseUrl}/webhook/instance`;
@@ -334,10 +102,15 @@ baseUrl: "http://localhost:8080"
 ```
 
 #### Problemas Resolvidos
+- ❌ **RESOLVIDO**: Erro de autenticação JWT - middleware não funcionava
+- ❌ **RESOLVIDO**: Instâncias com status `not_found` incorretamente
+- ❌ **RESOLVIDO**: Sincronização de status não funcionando
 - ❌ **RESOLVIDO**: Erro "Cannot POST /manager/instance/create"
 - ❌ **RESOLVIDO**: Erro "Not Found" na configuração de webhooks
 - ❌ **RESOLVIDO**: Instâncias não conectavam ao WhatsApp
 - ❌ **RESOLVIDO**: QR Code não era gerado corretamente
+- ❌ **RESOLVIDO**: Usuários não conseguiam acessar suas instâncias
+- ❌ **RESOLVIDO**: Sistema de permissões admin/usuário não funcionava
 
 ### 📚 DOCUMENTAÇÃO ATUALIZADA
 - ✅ **ADICIONADO**: Guia completo de reconstrução do sistema

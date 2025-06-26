@@ -149,11 +149,11 @@ async function setupWebhookEvolution(instanceName, webhookUrl) {
 }
 
 /**
- * Obtém o status de uma instância na Evolution API.
+ * Obtém o status e informações completas de uma instância na Evolution API.
  * @param {string} instanceName - Nome da instância.
  * @param {string} [userApiUrl] - URL personalizada da API (opcional).
  * @param {string} [userApiKey] - API Key personalizada (opcional).
- * @returns {Promise<object>} - Status da instância.
+ * @returns {Promise<object>} - Status e informações da instância.
  */
 async function getInstanceStatusEvolution(instanceName, userApiUrl = null, userApiKey = null) {
   // Recarregar configurações antes de cada chamada para garantir dados atualizados
@@ -166,8 +166,8 @@ async function getInstanceStatusEvolution(instanceName, userApiUrl = null, userA
     throw new Error('API Key da Evolution não configurada.');
   }
 
-  // Usar o endpoint específico connectionState para verificar o status da instância
-  const endpoint = `${apiUrl}/instance/connectionState/${instanceName}`;
+  // Usar o endpoint fetchInstances para obter informações completas da instância
+  const endpoint = `${apiUrl}/instance/fetchInstances`;
   
   try {
     const response = await axios.get(endpoint, {
@@ -179,8 +179,26 @@ async function getInstanceStatusEvolution(instanceName, userApiUrl = null, userA
       timeout: 8000 // Timeout otimizado para verificação individual
     });
     
-    const instanceData = response.data;
-    const instanceState = instanceData.instance?.state || 'close';
+    // Buscar a instância específica na lista retornada
+    const instances = response.data;
+    const targetInstance = instances.find(item => {
+      // A Evolution API retorna instâncias diretamente, não dentro de um objeto 'instance'
+      return item.name === instanceName || 
+             item.instanceName === instanceName ||
+             item.profileName === instanceName ||
+             item.id === instanceName;
+    });
+    
+    if (!targetInstance) {
+      console.log(`❌ Instância '${instanceName}' não encontrada na Evolution API`);
+      return {
+        status: 'not_found'
+      };
+    }
+    
+    // A instância é retornada diretamente, não dentro de um objeto 'instance'
+    const instanceData = targetInstance;
+    const instanceState = instanceData.connectionStatus || instanceData.status || 'close';
     
     // Mapear estados da Evolution API para os status do sistema
     let mappedStatus;
@@ -200,11 +218,16 @@ async function getInstanceStatusEvolution(instanceName, userApiUrl = null, userA
     }
     
     console.log(`📡 Status da Evolution API para ${instanceName}: ${instanceState} → ${mappedStatus}`);
+    console.log(`👤 Informações do perfil: ${instanceData.profileName} (${instanceData.ownerJid || 'N/A'})`);
     
     return {
       status: mappedStatus,
-      instanceName: instanceData.instance?.instanceName || instanceName,
-      state: instanceState
+      instanceName: instanceData.name || instanceData.instanceName || instanceName,
+      state: instanceState,
+      ownerJid: instanceData.ownerJid,
+      profileName: instanceData.profileName,
+      profilePictureUrl: instanceData.profilePictureUrl,
+      profileStatus: instanceData.profileStatus
     };
   } catch (error) {
     // Se a instância não for encontrada (404), retorna not_found
