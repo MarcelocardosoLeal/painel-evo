@@ -33,18 +33,29 @@ const getEvolutionSettings = async (req, res) => {
 // @route   POST /api/evolution-settings
 // @access  Private (Admin only)
 const upsertEvolutionSettings = async (req, res) => {
+  console.log('🔄 [EVOLUTION SETTINGS] Iniciando processo de salvamento');
+  console.log('📝 [EVOLUTION SETTINGS] Dados recebidos:', {
+    ev_api_url: req.body.ev_api_url ? '***URL_PRESENTE***' : 'VAZIO',
+    ev_api_key_global: req.body.ev_api_key_global ? '***CHAVE_PRESENTE***' : 'VAZIO',
+    usuario: req.user ? `ID: ${req.user.id}, Admin: ${req.user.isAdmin}` : 'NÃO_AUTENTICADO'
+  });
+  
   const { ev_api_url, ev_api_key_global } = req.body;
 
   if (!ev_api_url || !ev_api_key_global) {
+    console.log('❌ [EVOLUTION SETTINGS] Validação falhou - campos obrigatórios ausentes');
     return res.status(400).json({ message: 'URL da API Evolution e Chave API Global são obrigatórias.' });
   }
 
   try {
+    console.log('🔍 [EVOLUTION SETTINGS] Buscando configuração existente...');
     // Buscar configuração existente
     const existingSettings = await prisma.evolutionSettings.findFirst();
+    console.log('📊 [EVOLUTION SETTINGS] Configuração existente:', existingSettings ? `ID: ${existingSettings.id}` : 'NENHUMA');
     
     let settings;
     if (existingSettings) {
+      console.log('🔄 [EVOLUTION SETTINGS] Atualizando configuração existente...');
       // Atualizar configuração existente
       settings = await prisma.evolutionSettings.update({
         where: {
@@ -55,7 +66,9 @@ const upsertEvolutionSettings = async (req, res) => {
           apiKeyGlobal: ev_api_key_global,
         },
       });
+      console.log('✅ [EVOLUTION SETTINGS] Configuração atualizada com sucesso');
     } else {
+      console.log('🆕 [EVOLUTION SETTINGS] Criando nova configuração...');
       // Criar nova configuração global
       settings = await prisma.evolutionSettings.create({
         data: {
@@ -63,11 +76,13 @@ const upsertEvolutionSettings = async (req, res) => {
           apiKeyGlobal: ev_api_key_global,
         },
       });
+      console.log('✅ [EVOLUTION SETTINGS] Nova configuração criada com sucesso');
     }
 
+    console.log('🎉 [EVOLUTION SETTINGS] Processo concluído - enviando resposta');
     res.status(201).json(settings);
   } catch (error) {
-    console.error('Erro ao salvar configurações da API Evolution:', error);
+    console.error('💥 [EVOLUTION SETTINGS] Erro ao salvar configurações:', error);
     res.status(500).json({ message: 'Erro do servidor ao salvar configurações.' });
   }
 };

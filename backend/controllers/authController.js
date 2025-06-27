@@ -1,6 +1,7 @@
-const prisma = require('../prisma/db');
+const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const prisma = require('../prisma/db');
 
 // Registrar um novo usuário
 const register = async (req, res) => {

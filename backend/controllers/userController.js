@@ -1,5 +1,5 @@
-const bcrypt = require('bcryptjs');
 const asyncHandler = require('express-async-handler');
+const bcrypt = require('bcryptjs');
 const prisma = require('../prisma/db');
 
 // @desc    Get all users (Super Admin only)

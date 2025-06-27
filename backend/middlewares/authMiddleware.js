@@ -53,9 +53,19 @@ const protect = async (req, res, next) => {
 
 // Middleware para Super Admin (acesso total)
 const superAdmin = (req, res, next) => {
+  console.log('🔐 [SUPER ADMIN] Verificando permissões de super admin');
+  console.log('👤 [SUPER ADMIN] Usuário:', {
+    existe: !!req.user,
+    id: req.user?.id,
+    isAdmin: req.user?.isAdmin,
+    email: req.user?.email
+  });
+  
   if (req.user && req.user.isAdmin) {
+    console.log('✅ [SUPER ADMIN] Acesso autorizado - usuário é admin');
     next();
   } else {
+    console.log('❌ [SUPER ADMIN] Acesso negado - usuário não é admin');
     res.status(403).json({ message: 'Acesso negado. Apenas Super Administradores podem acessar esta funcionalidade.' });
   }
 };
