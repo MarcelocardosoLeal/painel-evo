@@ -213,8 +213,7 @@ const getInstances = asyncHandler(async (req, res) => {
                         );
                         const realStatus = statusResponse;
                         
-                        console.log(`📋 Status obtido para ${instanceIdentifier}:`, statusResponse);
-                        console.log(`📋 Status atual no banco: ${instance.status}`);
+
                         
                         // Verificar se há dados válidos da Evolution API para atualizar
                         if (realStatus.status && realStatus.status !== 'unknown' && realStatus.status !== 'not_found') {
@@ -243,14 +242,14 @@ const getInstances = asyncHandler(async (req, res) => {
                                              (realStatus.profilePictureUrl && realStatus.profilePictureUrl !== instance.profilePictureUrl);
                             
                             if (hasChanges) {
-                                console.log(`🔄 Atualizando dados da instância no banco:`, updateData);
+
                                 
                                 const updatedInstance = await prisma.instance.update({
                                     where: { id: instance.id },
                                     data: updateData
                                 });
                                 
-                                console.log(`✅ Dados atualizados com sucesso no banco para ${instanceIdentifier}`);
+
                                 
                                 // Emitir evento Socket.IO para notificar o frontend sobre as mudanças
                                 if (req.io) {
@@ -259,7 +258,6 @@ const getInstances = asyncHandler(async (req, res) => {
                                         status: updatedInstance.status,
                                         instance: updatedInstance
                                     });
-                                    console.log(`📡 Evento Socket.IO emitido para usuário ${userId}`);
                                 }
                                 
                                 return updatedInstance;
@@ -829,12 +827,8 @@ const syncInstancesStatus = async (req, res) => {
         // Obter status real da Evolution API
         const statusResponse = await getInstanceStatusEvolution(instance.instanceName);
         const realStatus = statusResponse.status;
-        console.log(`📋 Status obtido para ${instance.instanceName}: ${JSON.stringify(statusResponse)}`);
-        console.log(`📋 Status atual no banco: ${instance.status}`);
-
         // Verificar se há divergência
         if (realStatus !== instance.status) {
-          console.log(`🔄 Sincronizando ${instance.instanceName}: ${instance.status} → ${realStatus}`);
           
           // Atualizar no banco de dados
           const updatedInstance = await prisma.instance.update({

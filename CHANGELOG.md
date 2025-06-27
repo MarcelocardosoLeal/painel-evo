@@ -24,6 +24,113 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Versionamento Semântico](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2025-01-27 - MELHORIAS DE UX - MODAIS CUSTOMIZADOS
+
+### 🎨 MELHORIAS DE INTERFACE E EXPERIÊNCIA DO USUÁRIO
+
+#### Sistema de Modais Customizados - 100% Implementado
+- ✅ **IMPLEMENTADO**: Substituição completa de `alert()` e `confirm()` nativos
+- ✅ **IMPLEMENTADO**: Modal de confirmação com design moderno e responsivo
+- ✅ **IMPLEMENTADO**: Modal de notificação com tipos (success, error, info)
+- ✅ **IMPLEMENTADO**: Animações suaves e feedback visual aprimorado
+- ✅ **IMPLEMENTADO**: Auto-fechamento para notificações de sucesso (3 segundos)
+- ✅ **IMPLEMENTADO**: Melhor acessibilidade e consistência visual
+- ✅ **CORRIGIDO**: Erro de sintaxe (vírgula ausente) no Dashboard.vue
+
+#### Áreas de Aplicação dos Modais
+- ✅ **Exclusão de instâncias**: Confirmação elegante antes de deletar
+- ✅ **Desconexão de instâncias**: Modal de confirmação estilizado
+- ✅ **Exclusão de usuários**: Substituição do confirm() nativo
+- ✅ **Criação de usuários**: Notificação de sucesso customizada
+- ✅ **Atualização de usuários**: Feedback visual aprimorado
+- ✅ **Conexão Socket.IO**: Notificação de instância conectada
+- ✅ **Tratamento de erros**: Modais informativos para falhas
+
+#### Características dos Modais Implementados
+- 🎨 **Design moderno**: Seguindo padrões de UI/UX atuais
+- 📱 **Responsivo**: Adaptação automática para diferentes dispositivos
+- 🎭 **Animações**: Transições suaves de entrada e saída
+- 🎯 **Acessibilidade**: Suporte a navegação por teclado e leitores de tela
+- 🎨 **Consistência visual**: Integração perfeita com o design do sistema
+- ⚡ **Performance**: Renderização otimizada sem impacto na velocidade
+
+#### Arquivos Modificados
+- `frontend/src/views/Dashboard.vue` - Implementação completa dos modais customizados
+
+#### Código Implementado
+
+**1. Estrutura dos Modais (Dashboard.vue)**
+```vue
+<!-- Modal de Confirmação -->
+<div v-if="showConfirmModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4 transform transition-all duration-300 scale-100">
+    <div class="flex items-center mb-4">
+      <div class="flex-shrink-0">
+        <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 19.5c-.77.833.192 2.5 1.732 2.5z" />
+        </svg>
+      </div>
+      <div class="ml-3">
+        <h3 class="text-lg font-medium text-gray-900">{{ confirmModal.title }}</h3>
+      </div>
+    </div>
+    <div class="mt-2">
+      <p class="text-sm text-gray-500">{{ confirmModal.message }}</p>
+    </div>
+    <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+      <button @click="confirmAction" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm transition-colors duration-200">
+        {{ confirmModal.confirmText }}
+      </button>
+      <button @click="closeConfirmModal" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm transition-colors duration-200">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>
+```
+
+**2. Métodos de Controle dos Modais**
+```javascript
+// Método para exibir modal de confirmação
+showConfirm(title, message, confirmText, action) {
+  this.confirmModal = { title, message, confirmText, action };
+  this.showConfirmModal = true;
+},
+
+// Método para exibir notificações
+showNotification(title, message, type = 'info') {
+  this.notificationModal = { title, message, type };
+  this.showNotificationModal = true;
+  
+  // Auto-fechar notificações de sucesso
+  if (type === 'success') {
+    setTimeout(() => {
+      this.closeNotificationModal();
+    }, 3000);
+  }
+}
+```
+
+**3. Substituição de Alertas Nativos**
+```javascript
+// ANTES (alert/confirm nativos)
+if (confirm('Tem certeza que deseja deletar esta instância?')) {
+  // ação
+}
+alert('Instância deletada com sucesso!');
+
+// DEPOIS (modais customizados)
+this.showConfirm(
+  'Confirmar Exclusão',
+  'Tem certeza que deseja deletar esta instância?',
+  'Deletar',
+  () => this.confirmDeleteInstance(instanceId)
+);
+this.showNotification('Sucesso', 'Instância deletada com sucesso!', 'success');
+```
+
+---
+
 ## [1.1.0] - 2025-01-XX - CORREÇÕES CRÍTICAS SISTEMA COMPLETO
 
 ### 🔧 CORREÇÕES CRÍTICAS IMPLEMENTADAS
