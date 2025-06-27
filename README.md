@@ -98,8 +98,47 @@ painel-evo/
 ### Prerequisites
 - Node.js 16+ 
 - PostgreSQL 13+
-- Evolution API instance
 - Git
+
+### ⚡ Guia Rápido de Inicialização
+
+**1. Clone e configure o projeto:**
+```bash
+git clone https://github.com/your-username/painel-evo.git
+cd painel-evo
+```
+
+**2. Configure o backend:**
+```bash
+cd backend
+npm install
+cp .env.example .env
+# Edite o .env com suas configurações
+npx prisma generate
+npx prisma migrate deploy
+node seed.js  # Cria usuário admin
+```
+
+**3. Configure o frontend:**
+```bash
+cd ../frontend
+npm install
+```
+
+**4. Inicie os serviços (2 terminais):**
+```bash
+# Terminal 1 - Backend (Porta 5000)
+cd backend
+npm run dev
+
+# Terminal 2 - Frontend (Porta 8080)
+cd frontend
+npm run dev
+```
+
+**5. Acesse o sistema:**
+- Frontend: http://localhost:8080
+- Login: admin@painelevo.com.br / admin123
 
 ### 1. Clone Repository
 ```bash
@@ -120,7 +159,10 @@ cp .env.example .env
 npx prisma generate
 npx prisma migrate deploy
 
-# Start development server
+# Create admin user (if needed)
+node seed.js
+
+# Start development server (runs on PORT 5000)
 npm run dev
 ```
 
@@ -129,6 +171,8 @@ npm run dev
 # Open new terminal
 cd frontend
 npm install
+
+# Start development server (runs on PORT 8080)
 npm run dev
 ```
 
@@ -147,8 +191,12 @@ JWT_SECRET="your-super-secure-jwt-secret"
 EVOLUTION_API_URL="http://localhost:8080"
 EVOLUTION_API_KEY="your-evolution-api-key"
 
-# Server
+# Server Configuration
 PORT=5000
+FRONTEND_URL="http://localhost:8080"
+
+# Webhook Configuration
+DEFAULT_WEBHOOK_URL="http://localhost:5000/api/webhooks/evolution"
 ```
 
 ## 🔧 Technology Stack
@@ -208,6 +256,7 @@ PORT=5000
 
 For detailed information, please refer to:
 
+- **[⚡ QUICK_START.md](./QUICK_START.md)** - **Guia rápido de inicialização (RECOMENDADO)**
 - **[📋 PLANNING.md](./PLANNING.md)** - Architecture and development planning
 - **[📋 TASK.md](./TASK.md)** - Current development tasks and roadmap
 - **[📖 DOCUMENTACAO_COMPLETA.md](./DOCUMENTACAO_COMPLETA.md)** - Complete technical guide
@@ -233,6 +282,17 @@ This version includes essential fixes for system functionality:
 
 ## 🚀 Deployment
 
+### Development Setup
+```bash
+# Terminal 1 - Backend (Port 5000)
+cd backend
+npm run dev
+
+# Terminal 2 - Frontend (Port 8080)
+cd frontend
+npm run dev
+```
+
 ### Production Setup
 ```bash
 # Backend production
@@ -245,6 +305,16 @@ cd frontend
 npm run build
 # Serve dist/ folder with your web server
 ```
+
+### Access URLs
+- **Frontend**: http://localhost:8080
+- **Backend API**: http://localhost:5000
+- **Evolution API**: http://localhost:8080 (external service)
+
+### Default Admin Credentials
+- **Email**: admin@painelevo.com.br
+- **Password**: admin123
+- **⚠️ Important**: Change the password after first login for security
 
 ### Docker Support
 ```bash

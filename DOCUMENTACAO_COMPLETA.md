@@ -272,18 +272,24 @@ node create-admin.js
 
 #### **Passo 5: Inicialização dos Serviços**
 ```bash
-# Terminal 1 - Backend
+# Terminal 1 - Backend (Porta 5000)
 cd backend
 npm run dev
-# ou
-node server.js
 
-# Terminal 2 - Frontend
+# Terminal 2 - Frontend (Porta 8080)
 cd frontend
 npm run dev
-# ou
-npm run dev
 ```
+
+#### **URLs de Acesso:**
+- **Frontend**: http://localhost:8080
+- **Backend API**: http://localhost:5000
+- **Evolution API**: http://localhost:8080 (serviço externo)
+
+#### **Credenciais Padrão do Admin:**
+- **Email**: admin@painelevo.com.br
+- **Password**: admin123
+- **⚠️ Importante**: Altere a senha após o primeiro login
 
 ### 🔧 **PROBLEMAS COMUNS E SOLUÇÕES**
 

@@ -163,17 +163,19 @@ node create-admin.js
 ## 🔍 CHECKLIST DE VERIFICAÇÃO RÁPIDA
 
 ### Backend (Porta 5000)
-- [ ] `cd backend && node server.js` roda sem erros
-- [ ] Arquivo `.env` existe e está configurado
+- [ ] `cd backend && npm run dev` roda sem erros
+- [ ] Arquivo `.env` existe e está configurado com `PORT=5000`
 - [ ] PostgreSQL está rodando
 - [ ] `npx prisma studio` abre sem erros
 - [ ] Tabela `EvolutionSettings` tem `baseUrl` SEM `/manager`
+- [ ] Backend acessível em `http://localhost:5000`
 
 ### Frontend (Porta 8080)
 - [ ] `cd frontend && npm run dev` roda sem erros
 - [ ] `http://localhost:8080` carrega a tela de login
 - [ ] Login funciona e redireciona para dashboard
 - [ ] Não há erros no console do navegador (F12)
+- [ ] Frontend acessível em `http://localhost:8080`
 
 ### Evolution API
 - [ ] Evolution API está rodando na porta configurada

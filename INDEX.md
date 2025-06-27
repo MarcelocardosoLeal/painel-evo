@@ -12,6 +12,7 @@ This is the central index for all Painel Evolution project documentation. Use th
 | Document | Description | When to Use |
 |----------|-------------|-------------|
 | **[📋 README.md](./README.md)** | Project overview, quick start guide | First reading, general overview |
+| **[⚡ QUICK_START.md](./QUICK_START.md)** | **Guia rápido de inicialização** | **Iniciar sistema rapidamente** |
 | **[📋 PLANNING.md](./PLANNING.md)** | Architecture and development planning | Understanding system design |
 | **[📋 TASK.md](./TASK.md)** | Current development tasks and roadmap | Development planning, progress tracking |
 | **[📖 DOCUMENTACAO_COMPLETA.md](./DOCUMENTACAO_COMPLETA.md)** | Complete detailed technical guide | Development, troubleshooting |
@@ -33,11 +34,20 @@ This is the central index for all Painel Evolution project documentation. Use th
 ```
 1. 📋 README.md (visão geral)
    ↓
-2. 📖 DOCUMENTACAO_COMPLETA.md (seções principais)
+2. ⚡ QUICK_START.md (inicialização rápida)
    ↓
-3. 📝 CHANGELOG.md (v1.1.0 - correções críticas)
+3. 📖 DOCUMENTACAO_COMPLETA.md (seções principais)
    ↓
-4. 🆘 TROUBLESHOOTING.md (problemas comuns)
+4. 📝 CHANGELOG.md (v1.1.0 - correções críticas)
+   ↓
+5. 🆘 TROUBLESHOOTING.md (problemas comuns)
+```
+
+### ⚡ **QUERO APENAS INICIAR O SISTEMA**
+```
+1. ⚡ QUICK_START.md (comandos essenciais)
+   ↓
+2. 🆘 TROUBLESHOOTING.md (se houver problemas)
 ```
 
 ### 🔧 **RESOLVENDO PROBLEMAS**
