@@ -80,7 +80,7 @@ const login = async (req, res) => {
 // Atualizar perfil do usuário
 const updateProfile = async (req, res) => {
   const { name, email, currentPassword, newPassword } = req.body;
-  const userId = req.user.userId; // Obtido do middleware de autenticação
+  const userId = req.user.id; // Obtido do middleware de autenticação
 
   if (!name || !email) {
     return res.status(400).json({ message: 'Nome e email são obrigatórios.' });

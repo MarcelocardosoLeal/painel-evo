@@ -11,7 +11,7 @@ async function createEvolutionSettings() {
     
     const settings = await prisma.evolutionSettings.create({
       data: {
-        baseUrl: 'http://localhost:8080',
+        baseUrl: 'https://evolutionv2.advancedbot.com.br',
         apiKeyGlobal: '0417bf43b0a8669bd6635bcb49d783df'
       }
     });
