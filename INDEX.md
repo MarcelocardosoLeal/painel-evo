@@ -11,6 +11,7 @@ This is the central index for all Painel Evolution project documentation. Use th
 ### 🚀 **Essential Documentation**
 | Document | Description | When to Use |
 |----------|-------------|-------------|
+| **[🧠 PROJECT_STATE.md](./PROJECT_STATE.md)** | **Estado atual do projeto e contexto** | **SEMPRE ler no início de nova conversa** |
 | **[📋 README.md](./README.md)** | Project overview, quick start guide | First reading, general overview |
 | **[⚡ QUICK_START.md](./QUICK_START.md)** | **Guia rápido de inicialização** | **Iniciar sistema rapidamente** |
 | **[📋 PLANNING.md](./PLANNING.md)** | Architecture and development planning | Understanding system design |
@@ -151,6 +152,40 @@ This is the central index for all Painel Evolution project documentation. Use th
 
 ---
 
+## 🤖 **FLUXO DE TRABALHO COM IA**
+
+### 🧠 **Para Assistentes de IA (Claude, ChatGPT, etc.)**
+
+**⚠️ IMPORTANTE:** Sempre ler `PROJECT_STATE.md` no início de cada nova conversa!
+
+#### 📋 **Checklist para IA**
+- [ ] **PRIMEIRO:** Ler `PROJECT_STATE.md` para entender o contexto atual
+- [ ] **SEGUNDO:** Verificar `TASK.md` para tarefas pendentes
+- [ ] **TERCEIRO:** Consultar `PLANNING.md` para arquitetura
+- [ ] **QUARTO:** Atualizar `PROJECT_STATE.md` após mudanças significativas
+
+#### 🔄 **Fluxo de Continuidade**
+```
+1. 🧠 PROJECT_STATE.md (contexto atual)
+   ↓
+2. 📋 TASK.md (tarefas pendentes)
+   ↓
+3. 📋 PLANNING.md (arquitetura)
+   ↓
+4. Executar tarefa
+   ↓
+5. Atualizar 🧠 PROJECT_STATE.md
+```
+
+#### 💡 **Dicas para IA**
+- **Sempre manter contexto:** Use PROJECT_STATE.md como memória do projeto
+- **Documentar mudanças:** Atualize o estado após modificações importantes
+- **Seguir padrões:** Respeite a arquitetura definida em PLANNING.md
+- **Não reinventar:** Consulte o histórico antes de começar do zero
+
+---
+
 **📅 Última Atualização:** Janeiro 2025  
 **🎯 Objetivo:** Facilitar navegação e uso eficiente da documentação  
+**🤖 Novo:** Sistema de continuidade para assistentes de IA  
 **👥 Público:** Desenvolvedores, usuários e mantenedores do projeto

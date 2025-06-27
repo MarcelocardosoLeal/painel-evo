@@ -256,6 +256,11 @@ DEFAULT_WEBHOOK_URL="http://localhost:5000/api/webhooks/evolution"
 
 For detailed information, please refer to:
 
+### 🤖 **Para Assistentes de IA**
+- **[🧠 PROJECT_STATE.md](./PROJECT_STATE.md)** - **Estado atual do projeto (LER PRIMEIRO)**
+- **[🤖 AI_INSTRUCTIONS.md](./AI_INSTRUCTIONS.md)** - **Instruções específicas para IA**
+
+### 📚 **Documentação Geral**
 - **[⚡ QUICK_START.md](./QUICK_START.md)** - **Guia rápido de inicialização (RECOMENDADO)**
 - **[📋 PLANNING.md](./PLANNING.md)** - Architecture and development planning
 - **[📋 TASK.md](./TASK.md)** - Current development tasks and roadmap
