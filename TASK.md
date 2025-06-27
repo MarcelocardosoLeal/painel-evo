@@ -312,6 +312,18 @@ PORT=5000
 
 ## 📋 Bug Reporting & Tracking System
 
+### ⚠️ AVISO CRÍTICO PARA CORREÇÃO DE BUGS
+**🚨 SEMPRE TOME CUIDADO AO CONSERTAR UM BUG PARA NÃO CRIAR OUTRO! 🚨**
+
+**Antes de corrigir qualquer bug:**
+1. ✅ **Teste TUDO que funciona** antes de fazer mudanças
+2. ✅ **Faça mudanças pequenas e incrementais**
+3. ✅ **Teste imediatamente** após cada mudança
+4. ✅ **Verifique se não quebrou** outras funcionalidades
+5. ✅ **Documente exatamente** o que foi alterado
+
+**Regra de Ouro:** *"Melhor um bug conhecido do que dois bugs novos!"*
+
 ### Como Reportar Bugs
 1. **Adicione o bug na seção "🚨 Critical Bugs" ou "⚠️ Medium Priority Issues"**
 2. **Use este template:**

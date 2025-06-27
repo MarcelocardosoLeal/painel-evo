@@ -146,6 +146,10 @@ git commit -m "Descrição das mudanças"
 
 ## 🐛 Known Issues
 
+### ⚠️ AVISO CRÍTICO
+**🚨 CUIDADO: AO CONSERTAR BUGS, NÃO CRIE NOVOS! 🚨**
+*Sempre teste tudo antes e depois das mudanças!*
+
 ### 🚨 Critical Bugs
 - **Instance Management - Pause/Delete Not Working** 🔥
   - Criação de instâncias funciona perfeitamente
@@ -158,6 +162,7 @@ git commit -m "Descrição das mudanças"
 - ✅ Sistema de bug tracking implementado no TASK.md
 - ✅ Templates padronizados para reportar bugs
 - ✅ Workflow definido para IA e desenvolvedores
+- ✅ **Protocolo de segurança** para correção de bugs
 
 ## 📝 Notas Importantes
 

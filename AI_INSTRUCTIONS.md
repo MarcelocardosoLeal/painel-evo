@@ -78,6 +78,19 @@ npx prisma db push
 
 ## 🐛 Sistema de Bug Tracking
 
+### ⚠️ AVISO CRÍTICO PARA IA
+**🚨 NUNCA CRIE NOVOS BUGS AO CONSERTAR OS EXISTENTES! 🚨**
+
+**PROTOCOLO OBRIGATÓRIO antes de corrigir bugs:**
+1. 🔍 **ANALISE completamente** o código atual
+2. 🧪 **TESTE todas as funcionalidades** que funcionam
+3. 📝 **DOCUMENTE** exatamente o que vai mudar
+4. ⚡ **FAÇA mudanças pequenas** e incrementais
+5. ✅ **TESTE imediatamente** após cada mudança
+6. 🔄 **VERIFIQUE** se não quebrou outras funcionalidades
+
+**Regra de Ouro:** *"Melhor um bug conhecido do que dois bugs novos!"*
+
 ### Como Usar o Sistema
 1. **SEMPRE verificar** seção "🐛 Known Issues & Bugs" no TASK.md antes de começar
 2. **Reportar novos bugs** usando o template padronizado
