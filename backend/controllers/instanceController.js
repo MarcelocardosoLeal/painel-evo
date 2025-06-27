@@ -106,7 +106,7 @@ const createInstance = asyncHandler(async (req, res) => {
         const newInstance = await prisma.instance.create({
             data: {
                 instanceName: instanceNameFromUser, // Nome dado pelo usuário para identificar a instância no painel
-                evolutionInstanceId: createdEvolutionInstance.instance.instanceName, // Nome/ID da instância retornado pela Evolution API (no schema é evolutionInstanceId)
+                evolutionInstanceId: createdEvolutionInstance.instance.instanceId, // UUID único da instância retornado pela Evolution API
                 status: createdEvolutionInstance.instance.status?.toLowerCase() || 'pending_qr', // Status inicial após criação bem-sucedida
                 qrCodeBase64: createdEvolutionInstance.qrcode?.base64, // QR Code se retornado
                 ownerJid: createdEvolutionInstance.instance.owner, // JID do proprietário, se retornado
@@ -203,7 +203,7 @@ const getInstances = asyncHandler(async (req, res) => {
             const instancesWithRealStatus = await Promise.allSettled(
                 instances.map(async (instance) => {
                     try {
-                        const instanceIdentifier = instance.evolutionInstanceId || instance.instanceName;
+                        const instanceIdentifier = instance.instanceName;
                         console.log(`🔍 Verificando status da instância: ${instanceIdentifier}`);
                         
                         const statusResponse = await getInstanceStatusEvolution(
@@ -216,38 +216,58 @@ const getInstances = asyncHandler(async (req, res) => {
                         console.log(`📋 Status obtido para ${instanceIdentifier}:`, statusResponse);
                         console.log(`📋 Status atual no banco: ${instance.status}`);
                         
-                        // Se o status real é diferente do armazenado, atualizar no banco
-                        if (realStatus.status && realStatus.status !== 'unknown' && realStatus.status !== 'not_found' && 
-                            realStatus.status !== instance.status) {
+                        // Verificar se há dados válidos da Evolution API para atualizar
+                        if (realStatus.status && realStatus.status !== 'unknown' && realStatus.status !== 'not_found') {
                             
-                            console.log(`🔄 Atualizando status no banco: ${instance.status} → ${realStatus.status}`);
+                            // Preparar dados para atualização
+                            const updateData = {
+                                status: realStatus.status,
+                                updatedAt: new Date()
+                            };
                             
-                            const updatedInstance = await prisma.instance.update({
-                                where: { id: instance.id },
-                                data: {
-                                    status: realStatus.status,
-                                    ownerJid: realStatus.ownerJid || instance.ownerJid,
-                                    profileName: realStatus.profileName || instance.profileName,
-                                    profilePictureUrl: realStatus.profilePictureUrl || instance.profilePictureUrl,
-                                    updatedAt: new Date()
-                                }
-                            });
-                            
-                            console.log(`✅ Status atualizado com sucesso no banco para ${instanceIdentifier}`);
-                            
-                            // Emitir evento Socket.IO para notificar o frontend sobre a mudança de status
-                            if (req.io) {
-                                req.io.to(userId.toString()).emit('instance:status_changed', {
-                                    instanceId: instance.id,
-                                    status: updatedInstance.status,
-                                    instance: updatedInstance
-                                });
-                                console.log(`📡 Evento Socket.IO emitido para usuário ${userId}`);
+                            // Atualizar campos de perfil se disponíveis
+                            if (realStatus.ownerJid) {
+                                updateData.ownerJid = realStatus.ownerJid;
+                            }
+                            if (realStatus.profileName) {
+                                updateData.profileName = realStatus.profileName;
+                            }
+                            if (realStatus.profilePictureUrl) {
+                                updateData.profilePictureUrl = realStatus.profilePictureUrl;
                             }
                             
-                            return updatedInstance;
+                            // Verificar se há mudanças para atualizar
+                            const hasChanges = realStatus.status !== instance.status ||
+                                             (realStatus.ownerJid && realStatus.ownerJid !== instance.ownerJid) ||
+                                             (realStatus.profileName && realStatus.profileName !== instance.profileName) ||
+                                             (realStatus.profilePictureUrl && realStatus.profilePictureUrl !== instance.profilePictureUrl);
+                            
+                            if (hasChanges) {
+                                console.log(`🔄 Atualizando dados da instância no banco:`, updateData);
+                                
+                                const updatedInstance = await prisma.instance.update({
+                                    where: { id: instance.id },
+                                    data: updateData
+                                });
+                                
+                                console.log(`✅ Dados atualizados com sucesso no banco para ${instanceIdentifier}`);
+                                
+                                // Emitir evento Socket.IO para notificar o frontend sobre as mudanças
+                                if (req.io) {
+                                    req.io.to(userId.toString()).emit('instance:status_changed', {
+                                        instanceId: instance.id,
+                                        status: updatedInstance.status,
+                                        instance: updatedInstance
+                                    });
+                                    console.log(`📡 Evento Socket.IO emitido para usuário ${userId}`);
+                                }
+                                
+                                return updatedInstance;
+                            } else {
+                                console.log(`⏭️ Nenhuma mudança detectada para ${instanceIdentifier}`);
+                            }
                         } else {
-                            console.log(`⏭️ Status não alterado para ${instanceIdentifier} (${realStatus.status} = ${instance.status})`);
+                            console.log(`⚠️ Status inválido ou não encontrado para ${instanceIdentifier}: ${realStatus.status}`);
                         }
                         
                         return instance;
@@ -311,8 +331,10 @@ const connectInstance = asyncHandler(async (req, res) => {
 
         // 3. Chamar a Evolution API para obter o QR Code
         // A Evolution API usa o instanceName para identificar a instância na rota de conexão
-        const instanceIdentifier = instance.evolutionInstanceId || instance.instanceName;
+        const instanceIdentifier = instance.instanceName;
         const connectUrl = `${evolutionApiUrl}/instance/connect/${instanceIdentifier}`;
+        
+        console.log('Conectando instância:', instanceIdentifier, 'URL:', connectUrl);
 
         const evolutionApiResponse = await axios.get(connectUrl, {
             headers: {

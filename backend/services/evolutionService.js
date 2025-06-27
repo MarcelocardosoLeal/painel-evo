@@ -182,11 +182,13 @@ async function getInstanceStatusEvolution(instanceName, userApiUrl = null, userA
     // Buscar a instância específica na lista retornada
     const instances = response.data;
     const targetInstance = instances.find(item => {
-      // A Evolution API retorna instâncias diretamente, não dentro de um objeto 'instance'
-      return item.name === instanceName || 
-             item.instanceName === instanceName ||
-             item.profileName === instanceName ||
-             item.id === instanceName;
+      // A Evolution API retorna instâncias dentro de um objeto 'instance'
+      const instance = item.instance || item;
+      return instance.instanceId === instanceName || 
+             instance.instanceName === instanceName ||
+             instance.name === instanceName ||
+             instance.profileName === instanceName ||
+             instance.id === instanceName;
     });
     
     if (!targetInstance) {
@@ -196,8 +198,8 @@ async function getInstanceStatusEvolution(instanceName, userApiUrl = null, userA
       };
     }
     
-    // A instância é retornada diretamente, não dentro de um objeto 'instance'
-    const instanceData = targetInstance;
+    // A instância é retornada dentro de um objeto 'instance'
+    const instanceData = targetInstance.instance || targetInstance;
     const instanceState = instanceData.connectionStatus || instanceData.status || 'close';
     
     // Mapear estados da Evolution API para os status do sistema
@@ -218,13 +220,14 @@ async function getInstanceStatusEvolution(instanceName, userApiUrl = null, userA
     }
     
     console.log(`📡 Status da Evolution API para ${instanceName}: ${instanceState} → ${mappedStatus}`);
-    console.log(`👤 Informações do perfil: ${instanceData.profileName} (${instanceData.ownerJid || 'N/A'})`);
+    console.log(`👤 Informações do perfil: ${instanceData.profileName} (${instanceData.owner || instanceData.ownerJid || 'N/A'})`);
+    console.log(`🔍 Dados completos da instância:`, JSON.stringify(instanceData, null, 2));
     
     return {
       status: mappedStatus,
       instanceName: instanceData.name || instanceData.instanceName || instanceName,
       state: instanceState,
-      ownerJid: instanceData.ownerJid,
+      ownerJid: instanceData.owner || instanceData.ownerJid,
       profileName: instanceData.profileName,
       profilePictureUrl: instanceData.profilePictureUrl,
       profileStatus: instanceData.profileStatus
