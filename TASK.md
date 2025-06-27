@@ -203,9 +203,18 @@
   - Slack notifications
   - Email alerts
 
-## 🐛 Known Issues
+## 🐛 Known Issues & Bugs
 
-### Minor Issues
+### 🚨 Critical Bugs (Needs Immediate Attention)
+- [ ] **Instance Management - Pause/Delete Not Working** 🔥
+  - Issue: Cannot pause or delete instances (creation works perfectly)
+  - Impact: Users cannot manage existing instances properly
+  - Priority: HIGH
+  - Reported: January 2025
+  - Files to investigate: `backend/controllers/instanceController.js`, `backend/services/evolutionService.js`
+  - Status: PENDING INVESTIGATION
+
+### ⚠️ Medium Priority Issues
 - [ ] **UI Polish**
   - Loading states for all async operations
   - Consistent spacing and typography
@@ -215,6 +224,17 @@
   - More descriptive error messages
   - Localized error text
   - Error code system
+
+### 📝 Improvement Requests
+- [ ] **Instance Status Indicators**
+  - Better visual feedback for instance states
+  - Real-time status updates
+  - Connection health indicators
+
+- [ ] **User Experience**
+  - Confirmation dialogs for destructive actions
+  - Better feedback for long-running operations
+  - Improved navigation flow
 
 ### Technical Debt
 - [ ] **Code Refactoring**
@@ -289,6 +309,38 @@ PORT=5000
 - [ ] Error handling implemented
 - [ ] Documentation updated
 - [ ] Security considerations addressed
+
+## 📋 Bug Reporting & Tracking System
+
+### Como Reportar Bugs
+1. **Adicione o bug na seção "🚨 Critical Bugs" ou "⚠️ Medium Priority Issues"**
+2. **Use este template:**
+   ```
+   - [ ] **[Nome do Bug]** [Prioridade: 🔥/⚠️/📝]
+     - Issue: [Descrição clara do problema]
+     - Impact: [Como afeta os usuários]
+     - Priority: [HIGH/MEDIUM/LOW]
+     - Reported: [Data]
+     - Files to investigate: [Arquivos relacionados]
+     - Status: [PENDING/IN PROGRESS/TESTING/RESOLVED]
+   ```
+
+### Status de Bugs
+- **PENDING INVESTIGATION:** Bug reportado, aguardando análise
+- **IN PROGRESS:** Bug sendo investigado/corrigido
+- **TESTING:** Correção implementada, aguardando testes
+- **RESOLVED:** Bug corrigido e testado
+
+### Prioridades
+- **🔥 HIGH:** Funcionalidade crítica quebrada, afeta uso principal
+- **⚠️ MEDIUM:** Funcionalidade secundária com problemas
+- **📝 LOW:** Melhorias de UX, polish, otimizações
+
+### Workflow para IA
+1. **Sempre ler esta seção antes de começar qualquer tarefa**
+2. **Atualizar status dos bugs quando trabalhando neles**
+3. **Mover bugs resolvidos para seção "✅ Completed Tasks"**
+4. **Adicionar novos bugs descobertos durante desenvolvimento**
 
 ---
 

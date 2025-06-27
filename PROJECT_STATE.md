@@ -69,6 +69,11 @@
    - Instruções claras para manter continuidade
    - Documentação do estado atual do projeto
 
+3. **Sistema de Rastreamento de Bugs** ✅ IMPLEMENTADO
+   - ✅ **Implementação do sistema de rastreamento de bugs no TASK.md**
+   - ✅ **Documentação do bug crítico: Instance Pause/Delete não funcionando**
+   - ✅ **Criação de templates e workflow para reportar bugs**
+
 ### Estado dos Serviços
 - **Backend:** ✅ Rodando na porta 5000
 - **Frontend:** ✅ Rodando na porta 8080
@@ -76,6 +81,13 @@
 - **Documentação:** ✅ Atualizada e organizada
 
 ## 🎯 Próximos Passos Sugeridos
+
+### 🚨 Prioridade Crítica
+1. **INVESTIGAR BUG: Instance Pause/Delete não funcionando** 🔥
+   - Verificar `backend/controllers/instanceController.js`
+   - Analisar `backend/services/evolutionService.js`
+   - Testar endpoints de pause/delete
+   - Verificar logs de erro
 
 ### Sistema de Continuidade ✅ COMPLETO
 1. **Sistema de Estado de Projeto** ✅ IMPLEMENTADO
@@ -89,11 +101,14 @@
    - Implementação de testes automatizados
    - Sistema de logs mais robusto
    - Monitoramento de performance
+   - Melhorar feedback visual para operações de instância
+   - Adicionar confirmações para ações destrutivas
 
 2. **Funcionalidades**
    - Backup automático de configurações
    - Sistema de notificações
    - Dashboard de métricas
+   - Revisar e atualizar sistema de bug tracking
 
 ## 🚀 Como Iniciar o Sistema
 
@@ -128,6 +143,21 @@ git status
 git add .
 git commit -m "Descrição das mudanças"
 ```
+
+## 🐛 Known Issues
+
+### 🚨 Critical Bugs
+- **Instance Management - Pause/Delete Not Working** 🔥
+  - Criação de instâncias funciona perfeitamente
+  - Pausar e excluir instâncias não está funcionando
+  - Prioridade: HIGH
+  - Status: PENDING INVESTIGATION
+  - Arquivos para investigar: `instanceController.js`, `evolutionService.js`
+
+### Sistema de Rastreamento
+- ✅ Sistema de bug tracking implementado no TASK.md
+- ✅ Templates padronizados para reportar bugs
+- ✅ Workflow definido para IA e desenvolvedores
 
 ## 📝 Notas Importantes
 

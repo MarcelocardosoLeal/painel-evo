@@ -76,6 +76,31 @@ npx prisma db push
 - Tailwind CSS para styling
 - Axios para HTTP requests
 
+## 🐛 Sistema de Bug Tracking
+
+### Como Usar o Sistema
+1. **SEMPRE verificar** seção "🐛 Known Issues & Bugs" no TASK.md antes de começar
+2. **Reportar novos bugs** usando o template padronizado
+3. **Atualizar status** quando trabalhando em bugs existentes
+4. **Mover bugs resolvidos** para seção "✅ Completed Tasks"
+
+### Template para Novos Bugs
+```markdown
+- [ ] **[Nome do Bug]** [Prioridade: 🔥/⚠️/📝]
+  - Issue: [Descrição clara do problema]
+  - Impact: [Como afeta os usuários]
+  - Priority: [HIGH/MEDIUM/LOW]
+  - Reported: [Data]
+  - Files to investigate: [Arquivos relacionados]
+  - Status: [PENDING/IN PROGRESS/TESTING/RESOLVED]
+```
+
+### Status de Bugs
+- **PENDING INVESTIGATION:** Aguardando análise
+- **IN PROGRESS:** Sendo investigado/corrigido
+- **TESTING:** Correção implementada, aguardando testes
+- **RESOLVED:** Corrigido e testado
+
 ## 🔧 Comandos de Manutenção
 
 ```bash
@@ -110,9 +135,11 @@ Posso começar lendo esses arquivos?
 ### Para a IA
 - [ ] Ler PROJECT_STATE.md
 - [ ] Verificar TASK.md
+- [ ] **VERIFICAR seção "🐛 Known Issues & Bugs" no TASK.md**
 - [ ] Consultar PLANNING.md
 - [ ] Entender o contexto atual
 - [ ] Identificar próximos passos
+- [ ] **Atualizar status de bugs se trabalhando neles**
 
 ## 🎯 Objetivos do Sistema
 
