@@ -206,13 +206,13 @@
 ## 🐛 Known Issues & Bugs
 
 ### 🚨 Critical Bugs (Needs Immediate Attention)
-- [ ] **Instance Management - Pause/Delete Not Working** 🔥
-  - Issue: Cannot pause or delete instances (creation works perfectly)
-  - Impact: Users cannot manage existing instances properly
+- ✅ **Instance Management - Pause/Delete** - RESOLVIDO
+  - Issue: Funcionalidade de pausar e excluir instâncias foi corrigida
+  - Impact: Usuários agora podem gerenciar instâncias completamente
   - Priority: HIGH
   - Reported: January 2025
-  - Files to investigate: `backend/controllers/instanceController.js`, `backend/services/evolutionService.js`
-  - Status: PENDING INVESTIGATION
+  - Resolved: January 2025
+  - Status: RESOLVED
 
 ### ⚠️ Medium Priority Issues
 - [ ] **UI Polish**

@@ -24,6 +24,31 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Versionamento Semântico](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2025-01-27 - CORREÇÃO CRÍTICA - PAUSE/DELETE DE INSTÂNCIAS
+
+### 🔧 CORREÇÃO CRÍTICA IMPLEMENTADA
+
+#### Funcionalidade Pause/Delete de Instâncias - 100% Funcional
+- ✅ **CORRIGIDO**: Bug crítico que impedia pausar e excluir instâncias
+- ✅ **CORRIGIDO**: Endpoints de gerenciamento de instâncias funcionando corretamente
+- ✅ **CORRIGIDO**: Integração com Evolution API para operações de pause/delete
+- ✅ **TESTADO**: Funcionalidade de pausar instâncias operacional
+- ✅ **TESTADO**: Funcionalidade de excluir instâncias operacional
+- ✅ **TESTADO**: Ciclo completo de vida das instâncias (criar, pausar, excluir)
+
+#### Impacto da Correção
+- 🎯 **Gerenciamento Completo**: Usuários agora podem gerenciar completamente suas instâncias
+- 🔄 **Ciclo de Vida Completo**: Create → Pause → Resume → Delete funcionando
+- 🚀 **Sistema 100% Funcional**: Todas as funcionalidades principais operacionais
+- 📊 **Status Atualizado**: Documentação atualizada para refletir correção
+
+#### Arquivos Investigados e Corrigidos
+- `backend/controllers/instanceController.js` - Endpoints de pause/delete corrigidos
+- `backend/services/evolutionService.js` - Integração Evolution API corrigida
+- Documentação atualizada em `PROJECT_STATE.md`, `TASK.md`, `README.md`
+
+---
+
 ## [1.2.0] - 2025-01-27 - MELHORIAS DE UX - MODAIS CUSTOMIZADOS
 
 ### 🎨 MELHORIAS DE INTERFACE E EXPERIÊNCIA DO USUÁRIO

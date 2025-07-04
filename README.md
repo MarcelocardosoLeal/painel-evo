@@ -7,7 +7,7 @@
 ### 🎯 Key Features
 
 - ✅ **JWT Authentication** - Secure login and registration system with fixed middleware
-- ✅ **Instance Management** - Create and monitor WhatsApp instances with real-time sync
+- ✅ **Instance Management** - Create, monitor, pause and delete WhatsApp instances with real-time sync
 - ✅ **Real-time QR Codes** - Automatic generation and display via Socket.IO
 - ✅ **Admin Panel** - Complete user and configuration management
 - ✅ **Multi-tenant Architecture** - Complete isolation between users
@@ -92,6 +92,11 @@ painel-evo/
 - **Issue**: Incorrect webhook endpoints and URL configurations
 - **Solution**: Fixed API endpoints and database configurations
 - **Result**: WhatsApp instance creation and QR code generation working perfectly
+
+### ✅ Instance Pause/Delete Functionality Fixed
+- **Issue**: Critical bug preventing users from pausing or deleting instances
+- **Solution**: Fixed instance management endpoints and Evolution API integration
+- **Result**: Complete instance lifecycle management now working (create, pause, delete)
 
 ## 🚀 Quick Start
 
