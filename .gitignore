@@ -99,6 +99,23 @@ build/
 tmp/
 temp/
 
+# Debug and test files
+debug-*.js
+test-*.js
+check-*.js
+fix-*.js
+setup-*.js
+verify-*.js
+
+# Documentation files (keep only markdown)
+*.txt
+*.doc
+*.docx
+
+# Development scripts
+create-admin.js
+seed.js
+
 # Backend specific
 backend/.env
 backend/node_modules/
